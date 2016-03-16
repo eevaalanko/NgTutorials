@@ -7,7 +7,7 @@ Yleisiä linkkejä:
 
 ## Työn aihe
 ###ngTutorials
-Sovellus on sivusto, josta löytyy linkkejä erilaisiin AngularJS tutoriaaleihin. Tutoriaalien nimet linkkeineen ja kuvauksineen läytyvät tietokannasta.
+Sovellus on sivusto, josta löytyy linkkejä erilaisiin AngularJS tutoriaaleihin. Tutoriaalien nimet linkkeineen ja kuvauksineen löytyvät tietokannasta.
 
 ##Toiminnot 
 ###Käyttäjä:
