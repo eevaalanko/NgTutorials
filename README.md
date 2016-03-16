@@ -6,7 +6,7 @@ Yleisiä linkkejä:
 * [Linkki dokumentaatiooni](https://www.github.com)
 
 ## Työn aihe
-###AngTutorials
+###ngTutorials
 Sovellus on sivusto, josta löytyy linkkejä erilaisiin AngularJS tutoriaaleihin. 
 
 
