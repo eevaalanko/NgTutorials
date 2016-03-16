@@ -6,5 +6,8 @@ Yleisiä linkkejä:
 * [Linkki dokumentaatiooni](https://www.github.com)
 
 ## Työn aihe
+###AngTutorials
+Sovellus on sivusto, josta löytyy linkkejä erilaisiin AngularJS tutoriaaleihin. 
 
-Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
+
+[linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
