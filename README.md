@@ -17,5 +17,6 @@ Sovellus on sivusto, jossa on erilaisten AngularJS tutoriaalien kuvauksia ja lin
 - Omat suosikit: selailu, lisäys, muokkaus ja poisto 
 
 ###Admin:
+- Sisäänkirjautuminen
 - Tutoriaalien lisäys, muokkaus ja poisto
 
