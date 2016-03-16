@@ -19,5 +19,3 @@ Sovellus on sivusto, josta löytyy linkkejä erilaisiin AngularJS tutoriaaleihin
 ###Admin:
 - Tutoriaalien lisäys, muokkaus ja poisto
 
-
-[linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
