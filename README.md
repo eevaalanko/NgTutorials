@@ -11,12 +11,13 @@ Sovellus on sivusto, josta löytyy linkkejä erilaisiin AngularJS tutoriaaleihin
 
 ##Toiminnot 
 ###Käyttäjä:
+- Rekisteröityminen
 - Sisäänkirjautuminen
-- tutoriaalinen arvostelu (tähdet ja kommentointi)
-- Suosikkien lisääminen ja poistaminen omasta listasta
+- Tutoriaalinen arvostelu (tähdet, kommentointi)
+- Omat suosikit: selailu, lisäys, muokkaus ja poisto 
 
 ###Admin:
-- Linkkien lisäys, muokkaus ja poisto
+- Tutoriaalien lisäys, muokkaus ja poisto
 
 
 [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
