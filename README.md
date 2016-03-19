@@ -2,12 +2,21 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
-* [Linkki dokumentaatiooni](https://www.github.com)
+* [Linkki sovellukseeni](http://ealanko.users.cs.helsinki.fi/ngtuto)
+* [Linkki dokumentaatiooni](doc/dokumentaatio.pdf)
 
 ## Työn aihe
 ###ngTutorials
-Sovellus on sivusto, josta löytyy linkkejä erilaisiin AngularJS tutoriaaleihin. 
+Sovellus on sivusto, jossa on erilaisten AngularJS tutoriaalien kuvauksia ja linkkejä. Käyttäjä voi kommentoida ja pisteyttää tutoriaaleja. (Eniten tähtiä saaneet pääsevät top 5-listaan.) Sivustolta löytyy myös sisäänkirjautuneen käyttäjän omat suosikit- lista.
 
+##Toiminnot 
+###Käyttäjä:
+- Rekisteröityminen
+- Sisäänkirjautuminen
+- Tutoriaalinen arvostelu (tähdet, kommentointi)
+- Omat suosikit: selailu, lisäys, muokkaus ja poisto 
 
-[linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
+###Admin:
+- Sisäänkirjautuminen
+- Tutoriaalien lisäys, muokkaus ja poisto
+
