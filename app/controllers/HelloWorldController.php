@@ -1,5 +1,8 @@
 <?php
 
+// Muista sisällyttää malliluokka require-komennolla!
+require 'app/models/tuto.php';
+
 class HelloWorldController extends BaseController {
 
     public static function index() {
@@ -17,8 +20,15 @@ class HelloWorldController extends BaseController {
 
     public static function sandbox() {
         // Testaa koodiasi täällä
-       // echo 'Hello World!';
-         View::make('signup.html');
+        //  echo 'Hello World!';
+        //  $angularjs = new Tuto(array('id' => 1, 'name' => 'AngularJs', 'description' => 'Angular API'));
+        //   $angularjs = Tuto::find(1
+        // $tutos = Tuto::all();
+        // Kint-luokan dump-metodi tulostaa muuttujan arvon
+        //  Kint::dump($tutos);
+        //  Kint::dump($api);
+        //  echo $angularjs->name;
+        View::make('tutorials.php');
     }
 
 }
