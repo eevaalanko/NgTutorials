@@ -1,66 +1,66 @@
 {% extends "base.html" %}{% block content %}
 
 
-<div class="container">
-    <div class="header">
-        <img src="/ngtuto/assets/images/angular.jpg" class="img-rounded" alt="AngularJS"
-             width="30" height="30">
-        <h3 class="text-muted">NgTutorials</h3>
-    </div>
-    <div ng-controller="tutoCtrl">
-        <div class="jumbotron">
-            <h3 class="text-muted">Find and rate AngularJs tutorials. Make
-                a list of your own favorites.</h3>
-        </div>
-        <div class="table-responsive">
-            <h3 class="text-muted">
-                Best Rated Tutorials
-                </h5>
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td><a href="/ngtuto/app/views/tutorial.html">Test</a></td>
-                            <td>testiii</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td><a href="/ngtuto/app/views/tutorial.html">Test2</a></td>
-                            <td>testiii....</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td><a href="/ngtuto/app/views/tutorial.html">Test3</a></td>
-                            <td>testiiii!</td>
-                        </tr>
-                    </tbody>
-                </table>
-                </div>
-               
-                    <div>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="tuto in tutos">
-                                    <td>{{tuto.id}}</td>
-                                    <td>{{tuto.name}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+<div class="header">
+    <img src="/ngtuto/assets/images/angular.jpg" class="img-rounded" alt="AngularJS"
+         width="30" height="30">
+    <h3 class="text-muted">NgTutorials</h3>
+</div>
+<div ng-controller="tutoCtrl">
+    <div class="jumbotron">
+        <h3 class="text-muted">Find and rate AngularJs tutorials. Make
+            a list of your own favorites.</h3>
     </div>
+    <div class="table-responsive">
+        <h3 class="text-muted">
+            Best Rated Tutorials
+            </h5>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><a href="{{base_path}}/tutorial">Test</a></td>
+                        <td>testiii</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td><a href="{{base_path}}/tutorial">Test2</a></td>
+                        <td>testiii....</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td><a href="{{base_path}}/tutorial">Test3</a></td>
+                        <td>testiiii!</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="tuto in tutos">
+                    <td>{{tuto.id}}</td>
+                    <td>{{tuto.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
 {% endblock %}

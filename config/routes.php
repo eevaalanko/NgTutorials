@@ -8,6 +8,10 @@
     HelloWorldController::sandbox();
   });
   
-  $routes->get('/', function() {
-    HelloWorldController::sandbox();
+  $routes->get('/signup', function() {
+    HelloWorldController::signup();
   });
+    $routes->get('/tutorial', function() {
+    HelloWorldController::tutorial();
+  });
+  

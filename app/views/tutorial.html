@@ -1,0 +1,53 @@
+{% extends "base.html" %}{% block content %}
+<div class="container">
+    <div class="header">
+        <img src="/ngtuto/assets/images/angular.jpg" class="img-rounded" alt="AngularJS"
+             width="30" height="30">
+        <h3 class="text-muted">TutorialName</h3>
+    </div>
+    <div ng-controller="MyController">
+        <div class="jumbotron">
+            <h3 class="text-muted">Tutorial description</h3>
+        </div>
+        <div class="table-responsive">
+            <h3 class="text-muted">Tutorial rewiews</h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Writer</th>
+                        <th>Review</th>
+                        <th>Stars</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><a href="">Test</a></td>
+                        <td>testiii</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td><a href="">Test2</a></td>
+                        <td>testiii....</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td><a href="">Test3</a></td>
+                        <td>testiiii!</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3 class="text-muted">Write a review. You have to be a
+                registered user to review tutorials.</h3>
+            <form name="form" novalidate>
+                <div ng-repeat="value in Values">
+                    <div class="form-group"></div>
+                    <button class="btn btn-primary" type="submit"
+                            ng-click="ok(form.$valid)">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
