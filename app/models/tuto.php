@@ -10,14 +10,6 @@ parent::__construct($attributes);
 
 }
 
-public static function test(){
-    
- $query = DB::connection()->prepare('SELECT * FROM Tutorial');
- $query->execute();
-// Haetaan kyselyn tuottamat rivit
-$rows = $query->fetchAll();
-
-}
 
 
 public static function all() {
