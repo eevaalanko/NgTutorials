@@ -1,13 +1,15 @@
 {% extends "base.html" %}{% block content %}
-
-
-
 <div class="header">
     <img src="/ngtuto/assets/images/angular.jpg" class="img-rounded" alt="AngularJS"
          width="30" height="30">
     <h3 class="text-muted">NgTutorials</h3>
 </div>
-<div ng-controller="tutoCtrl">
+<div  ng-controller='myCtrl'>
+    <input type="text" ng-model="username">
+    <button ng-click='sayHello()'>greet</button>
+    <hr>
+    {{ '{{greeting}}' }}
+    {{ '{{tutos}}' }}
     <div class="jumbotron">
         <h3 class="text-muted">Find and rate AngularJs tutorials. Make
             a list of your own favorites.</h3>
@@ -25,42 +27,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr ng-repeat="tuto in tutos">
                         <th scope="row">1</th>
                         <td><a href="{{base_path}}/tutorial">Test</a></td>
-                        <td>testiii</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td><a href="{{base_path}}/tutorial">Test2</a></td>
-                        <td>testiii....</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td><a href="{{base_path}}/tutorial">Test3</a></td>
-                        <td>testiiii!</td>
-                    </tr>
+                        <td>{{ '{{tuto.name}}' }}</td>
+                    </tr>                  
                 </tbody>
             </table>
+            <li ng-repeat="x in customer">
+                {{ '{{x.name}}' }}
+
+            </li>
     </div>
-
-    <div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="tuto in tutos">
-                    <td>{{tuto.id}}</td>
-                    <td>{{tuto.name}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
 </div>
 {% endblock %}

@@ -1,17 +1,23 @@
 <?php
 
-  $routes->get('/', function() {
+$routes->get('/', function() {
     HelloWorldController::index();
-  });
+});
 
-  $routes->get('/hiekkalaatikko', function() {
+$routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
-  });
-  
-  $routes->get('/signup', function() {
+});
+
+$routes->get('/signup', function() {
     HelloWorldController::signup();
-  });
-    $routes->get('/tutorial', function() {
+});
+
+$routes->get('/tutorial', function() {
     HelloWorldController::tutorial();
-  });
-  
+});
+
+$routes->get('/allTutorials', function() {
+    HelloWorldController::allTutorials();
+}
+);
+
