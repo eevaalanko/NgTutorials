@@ -5,10 +5,6 @@
     <h3 class="text-muted">NgTutorials</h3>
 </div>
 <div  ng-controller='myCtrl'>
-    <input type="text" ng-model="username">
-    <button ng-click='sayHello()'>greet</button>
-    <hr>
-    {{ '{{greeting}}' }}
     {{ '{{tutos}}' }}
     <div class="jumbotron">
         <h3 class="text-muted">Find and rate AngularJs tutorials. Make
@@ -28,16 +24,15 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="tuto in tutos">
-                        <th scope="row">1</th>
-                        <td><a href="{{base_path}}/tutorial">Test</a></td>
-                        <td>{{ '{{tuto.name}}' }}</td>
+                        <th scope="row" ng-model = "currentTuto" ng-value = "{{ '{{tuto.id}}' }}">1</th>
+                        <td><button type="button" class="btn btn-link" ng-click="openTutoPage(tuto.id)">
+                                {{' {{tuto.name}} '}}</button></td>
+                        <td>{{ '{{tuto.description}}' }}</td>
+                        <td></td>
+                        <td>Stars: </td>
                     </tr>                  
                 </tbody>
             </table>
-            <li ng-repeat="x in customer">
-                {{ '{{x.name}}' }}
-
-            </li>
     </div>
 </div>
 {% endblock %}

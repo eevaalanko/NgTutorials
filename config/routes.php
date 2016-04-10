@@ -1,5 +1,7 @@
 <?php
 
+
+
 $routes->get('/', function() {
     HelloWorldController::index();
 });
@@ -18,6 +20,9 @@ $routes->get('/tutorial', function() {
 
 $routes->get('/allTutorials', function() {
     HelloWorldController::allTutorials();
-}
-);
+});
+
+$routes->get('/findTutorial', function() {
+    HelloWorldController::findTutorial();
+});
 

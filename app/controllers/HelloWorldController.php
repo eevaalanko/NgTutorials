@@ -23,15 +23,24 @@ class HelloWorldController extends BaseController {
         echo json_encode($tutos);
     }
 
+    public static function findTutorial() {
+        $postdata = file_get_contents("php://input");
+        json_decode($postdata);
+        Kint::dump($postdata);
+        // $tuto = Tuto::find($postdata);
+        //echo json_encode($tuto);
+    }
+
     public static function sandbox() {
         // Testaa koodiasi täällä
         echo 'Hello World!';
         //  $angularjs = new Tuto(array('id' => 1, 'name' => 'AngularJs', 'description' => 'Angular API'));
         //   $angularjs = Tuto::find(1
         $tutos = Tuto::all();
+        $eka = Tuto::find(1);
         // Kint-luokan dump-metodi tulostaa muuttujan arvon
         Kint::dump($tutos);
-        //  Kint::dump($api);
+        Kint::dump($eka);
         //  echo $angularjs->name;
     }
 

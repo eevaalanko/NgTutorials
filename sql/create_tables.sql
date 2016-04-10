@@ -1,14 +1,14 @@
 CREATE TABLE Usr (id  SERIAL PRIMARY KEY, 
-					email varchar(50) NOT NULL, 
-					name varchar(50) NOT NULL, 
+					email varchar(255) NOT NULL, 
+					name varchar(255) NOT NULL, 
 					password varchar(50) NOT NULL
 					);
 					
 CREATE TABLE Tutorial (id  SERIAL PRIMARY KEY, 
-						name varchar(50) NOT NULL, 
-						description varchar(255) NOT NULL, 
-						link varchar(50) NOT NULL, 
-						image bytea NOT NULL, 
+						name varchar(255) NOT NULL, 
+						description varchar(255), 
+						link varchar(255) , 
+						image varchar(255), 
 						added date 
 						);
 
