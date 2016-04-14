@@ -34,14 +34,11 @@ class HelloWorldController extends BaseController {
     public static function sandbox() {
         // Testaa koodiasi täällä
         echo 'Hello World!';
-        //  $angularjs = new Tuto(array('id' => 1, 'name' => 'AngularJs', 'description' => 'Angular API'));
-        //   $angularjs = Tuto::find(1
         $tutos = Tuto::all();
         $eka = Tuto::find(1);
         // Kint-luokan dump-metodi tulostaa muuttujan arvon
         Kint::dump($tutos);
         Kint::dump($eka);
-        //  echo $angularjs->name;
     }
 
 }

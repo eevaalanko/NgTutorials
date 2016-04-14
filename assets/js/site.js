@@ -9,7 +9,7 @@ angular.module("myApp").controller(
                 $http.get('allTutorials').success(function (result) {
                     console.log(result);
                     $scope.tutos = result;
-                    console.log("Tutoriaalin nimi on: " + $scope.tutos[0].name);
+         //           console.log("Tutoriaalin nimi on: " + $scope.tutos[0].name);
                 });
             };
 

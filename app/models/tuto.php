@@ -32,6 +32,8 @@ class Tuto extends BaseModel {
             return $tutos;
         }
     }
+    
+
 
     public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Tutorial WHERE id = :id LIMIT 1');
