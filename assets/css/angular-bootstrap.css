@@ -5065,8 +5065,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
 	color: #843534;
 }
 
-@
--webkit-keyframes progress-bar-stripes {from { background-position:40px0;
+@-webkit-keyframes progress-bar-stripes {from { background-position:40px0;
 	
 }
 
@@ -5075,8 +5074,7 @@ to {
 }
 
 }
-@
-keyframes progress-bar-stripes {from { background-position:40px0;
+@keyframes progress-bar-stripes {from { background-position:40px0;
 	
 }
 
@@ -6548,8 +6546,7 @@ button.close {
 	transform: translate3d(0, 0, 0);
 }
 
-@
--ms-viewport {
+@-ms-viewport {
 	width: device-width;
 }
 

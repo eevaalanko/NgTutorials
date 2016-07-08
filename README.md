@@ -6,17 +6,17 @@ Yleisiä linkkejä:
 * [Linkki dokumentaatiooni](doc/dokumentaatio.pdf)
 
 ## Työn aihe
-###ngTutorials
+### ngTutorials
 Sovellus on sivusto, jossa on erilaisten AngularJS tutoriaalien kuvauksia ja linkkejä. Käyttäjä voi kommentoida ja pisteyttää tutoriaaleja. (Eniten tähtiä saaneet pääsevät top 5-listaan.) Sivustolta löytyy myös sisäänkirjautuneen käyttäjän omat suosikit- lista.
 
-##Toiminnot 
-###Käyttäjä:
+## Toiminnot
+### Käyttäjä:
 - Rekisteröityminen
 - Sisäänkirjautuminen
 - Tutoriaalinen arvostelu (tähdet, kommentointi)
-- Omat suosikit: selailu, lisäys, muokkaus ja poisto 
+- Omat suosikit: selailu, lisäys, muokkaus ja poisto
 
-###Admin:
+### Admin:
 - Sisäänkirjautuminen
 - Tutoriaalien lisäys, muokkaus ja poisto
 
