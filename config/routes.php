@@ -3,26 +3,26 @@
 
 
 $routes->get('/', function() {
-    HelloWorldController::index();
+    TutoController::index();
 });
 
 $routes->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
+    TutoController::sandbox();
 });
 
 $routes->get('/signup', function() {
-    HelloWorldController::signup();
+    TutoController::signup();
 });
 
 $routes->get('/tutorial', function() {
-    HelloWorldController::tutorial();
+    TutoController::tutorial();
 });
 
 $routes->get('/allTutorials', function() {
-    HelloWorldController::allTutorials();
+    TutoController::allTutorials();
 });
 
 $routes->get('/findTutorial', function() {
-    HelloWorldController::findTutorial();
+    TutoController::findTutorial();
 });
 

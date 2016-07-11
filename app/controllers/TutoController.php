@@ -3,7 +3,7 @@
 // Muista sisällyttää malliluokka require-komennolla!
 require 'app/models/tuto.php';
 
-class HelloWorldController extends BaseController {
+class TutoController extends BaseController {
 
     public static function index() {
         // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
@@ -24,9 +24,11 @@ class HelloWorldController extends BaseController {
     }
 
     public static function findTutorial() {
-        $postdata = file_get_contents("php://input");
-        json_decode($postdata);
-        Kint::dump($postdata);
+        echo Var_dump($_POST);
+       // (int)$id = $_POST('id');
+       // $tuto = Tuto::find($id);
+      //  echo json_encode($tuto);
+     //   Kint::dump($postdata);
         // $tuto = Tuto::find($postdata);
         //echo json_encode($tuto);
     }
@@ -35,7 +37,9 @@ class HelloWorldController extends BaseController {
         // Testaa koodiasi täällä
         echo 'Hello World!';
         $tutos = Tuto::all();
+        echo 'ekatuto: ';
         $eka = Tuto::find(1);
+        $ekamyos = findTutorial();
         // Kint-luokan dump-metodi tulostaa muuttujan arvon
         Kint::dump($tutos);
         Kint::dump($eka);

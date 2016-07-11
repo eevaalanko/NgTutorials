@@ -4,11 +4,12 @@
          width="30" height="30">
     <h3 class="text-muted">NgTutorials</h3>
 </div>
-<div  ng-controller='myCtrl'>
-    {{ '{{tutos}}' }}
+<div>
+   "tutos: " {{ '{{tutos}}' }}
+   "current tuto: " {{ '{{tutos}}' }}
     <div class="jumbotron">
         <h3 class="text-muted">Find and rate AngularJs tutorials. Make
-            a list of your own favorites!!!</h3>
+            a list of your own favorites.</h3>
     </div>
     <div class="table-responsive">
         <h3 class="text-muted">
@@ -20,16 +21,16 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Stars</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="tuto in tutos">
-                        <th scope="row" ng-model = "currentTuto" ng-value = "{{ '{{tuto.id}}' }}">1</th>
+                        <th></th>
                         <td><button type="button" class="btn btn-link" ng-click="openTutoPage(tuto.id)">
                                 {{' {{tuto.name}} '}}</button></td>
-                        <td>{{ '{{tuto.description}}' }}</td>
-                        <td></td>
-                        <td>Stars: </td>
+                        <td>{{ '{{tuto.description}}' }}</td>              
+                        <td>*** </td>
                     </tr>                  
                 </tbody>
             </table>

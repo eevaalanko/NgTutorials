@@ -28,13 +28,11 @@ class Tuto extends BaseModel {
                 'link' => $row['link'],
                 'image' => $row['image'],
                 'added' => $row['added']
-            ));
-            return $tutos;
+            ));           
         }
+        return $tutos;
     }
     
-
-
     public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Tutorial WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));

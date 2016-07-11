@@ -5,7 +5,6 @@
              width="30" height="30">
         <h3 class="text-muted">TutorialName</h3>
     </div>
-    <div ng-controller="MyController">
         <div class="jumbotron">
             <h3 class="text-muted">Tutorial description</h3>
         </div>
@@ -26,16 +25,6 @@
                         <td><a href="">Test</a></td>
                         <td>testiii</td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td><a href="">Test2</a></td>
-                        <td>testiii....</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td><a href="">Test3</a></td>
-                        <td>testiiii!</td>
-                    </tr>
                 </tbody>
             </table>
             <h3 class="text-muted">Write a review. You have to be a
@@ -45,9 +34,10 @@
                     <div class="form-group"></div>
                     <button class="btn btn-primary" type="submit"
                             ng-click="ok(form.$valid)">Submit</button>
+                </div>
             </form>
         </div>
-    </div>
+   
 </div>
 
 {% endblock %}
