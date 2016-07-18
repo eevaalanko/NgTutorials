@@ -5,8 +5,8 @@
     <h3 class="text-muted">NgTutorials</h3>
 </div>
 <div>
-   "tutos: " {{ '{{tutos}}' }}
-   "current tuto: " {{ '{{tutos}}' }}
+    "tutos: " {{ '{{tutos}}' }}
+    "current: " {{ '{{currentTuto}}' }}
     <div class="jumbotron">
         <h3 class="text-muted">Find and rate AngularJs tutorials. Make
             a list of your own favorites.</h3>
@@ -18,22 +18,51 @@
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>Name</th>
-                        <th>Description</th>
                         <th>Stars</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="tuto in tutos">
-                        <th></th>
-                        <td><button type="button" class="btn btn-link" ng-click="openTutoPage(tuto.id)">
-                                {{' {{tuto.name}} '}}</button></td>
-                        <td>{{ '{{tuto.description}}' }}</td>              
+                        <td><button type="button" class="btn btn-link" ng-click="openTutoPage(tuto)">
+                                {{' {{tuto.name}} '}}</button></td>            
                         <td>*** </td>
                     </tr>                  
                 </tbody>
             </table>
+
+            <script type="text/ng-template" id="myModalContent.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">{{'{{ current.name }} '}}</h3>
+                </div>
+                <div class="modal-body">
+                    <h4>{{'{{ current.description }} '}}</h4>
+                    <h4>Link to page: <a href="{{'{{ current.link }} '}}">{{'{{ current.link }} '}} </a> </h4>
+                </div>
+                <div class="modal-footer">
+                </div>
+                <div class="modal-header">
+                  <h5 class="text-muted">Write a review. (You have to be a
+                    registered user to review tutorials.)</h5>
+                </div>
+                <div class="modal-body">
+                  <form name="form" novalidate>
+                    <input type="text" ng-model="" /><br />
+                </div> 
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit" ng-click="ok(form.$valid)">Submit</button>
+                    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                  </form>
+                </div>
+            </script>
+
+            <button type="button" class="btn btn-default" ng-click="open()">Open me!</button>
+            <button type="button" class="btn btn-default" ng-click="open('lg')">Large modal</button>
+            <button type="button" class="btn btn-default" ng-click="open('sm')">Small modal</button>
+            <button type="button" class="btn btn-default" ng-click="toggleAnimation()">Toggle Animation ({{'{{ animationsEnabled }}'}})</button>
+            <div ng-show="selected">Selection from a modal: {{'{{ selected }}'}}</div>
+
     </div>
 </div>
 {% endblock %}

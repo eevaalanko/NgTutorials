@@ -1,7 +1,5 @@
 <?php
 
-
-
 $routes->get('/', function() {
     TutoController::index();
 });
@@ -22,7 +20,11 @@ $routes->get('/allTutorials', function() {
     TutoController::allTutorials();
 });
 
-$routes->get('/findTutorial', function() {
+$routes->post('/findTutorial', function() {
     TutoController::findTutorial();
+});
+
+$routes->get('/currentTutorial', function() {
+    TutoController::currentTutorial();
 });
 

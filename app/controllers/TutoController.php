@@ -7,6 +7,7 @@ class TutoController extends BaseController {
 
     public static function index() {
         // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
+        $_SESSION["currentTuto"] = "testi";
         View::make('home.html');
     }
 
@@ -24,13 +25,9 @@ class TutoController extends BaseController {
     }
 
     public static function findTutorial() {
-        echo Var_dump($_POST);
-       // (int)$id = $_POST('id');
-       // $tuto = Tuto::find($id);
-      //  echo json_encode($tuto);
-     //   Kint::dump($postdata);
-        // $tuto = Tuto::find($postdata);
-        //echo json_encode($tuto);
+        $id = json_decode(file_get_contents("php://input"), true);
+        $tuto = Tuto::find($id);
+        echo json_encode($tuto);
     }
 
     public static function sandbox() {
@@ -39,8 +36,9 @@ class TutoController extends BaseController {
         $tutos = Tuto::all();
         echo 'ekatuto: ';
         $eka = Tuto::find(1);
-        $ekamyos = findTutorial();
+        $ekamyos = 'findTutorial';
         // Kint-luokan dump-metodi tulostaa muuttujan arvon
+        Kint::dump($data);
         Kint::dump($tutos);
         Kint::dump($eka);
     }
