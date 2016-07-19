@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html ng-app="myApp" >
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,12 +17,9 @@
         <!-- Oma tyylitiedostomme -->
         <link href="{{base_path}}/assets/css/site.css" rel="stylesheet">
         <link href="{{base_path}}/assets/css/signin.css" rel="stylesheet">
-
-
     </head>
 
     <body >
-
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container-fluid">
 
@@ -53,7 +50,7 @@
             </div>
         </nav>
 
-        <div id="main-container" ng-app="myApp"  ng-controller='myCtrl'>
+        <div id="main-container"  ng-controller='myCtrl'>
             <!-- Dynaaminen sisältö tulee tähän -->
             {% block content %}{% endblock %}
         </div>
@@ -62,7 +59,7 @@
         <!-- jQuery -->
         <script src="{{base_path}}/vendor/jquery.min.js"></script>
 
-        <!-- Bootstrap (skriptitiedosto) -->
+        <!-- Bootstrap ja Angular (skriptitiedostot) -->
         <script src="{{base_path}}/vendor/bootstrap/js/bootstrap.min.js"></script>
         <script src="{{base_path}}/assets/js/angular.min.js" type="text/javascript"></script>
         <script src="{{base_path}}/assets/js/ui-bootstrap-min.js" type="text/javascript"></script>
@@ -72,8 +69,9 @@
         <script src="{{base_path}}/assets/js/angular-touch.min.js"></script>
         <script src="{{base_path}}/assets/js/angular-sanitize.js"></script>
 
-        <!-- Oma skriptitiedostomme -->
+        <!-- Omat skriptitiedostomme -->
         <script src="{{base_path}}/assets/js/site.js"></script>
+        <script src="{{base_path}}/assets/js/addTutorial.js"></script>
         {% endblock %}
     </body>
 </html>

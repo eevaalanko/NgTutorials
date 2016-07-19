@@ -12,10 +12,6 @@ $routes->get('/signup', function() {
     TutoController::signup();
 });
 
-$routes->get('/tutorial', function() {
-    TutoController::tutorial();
-});
-
 $routes->get('/allTutorials', function() {
     TutoController::allTutorials();
 });
@@ -24,7 +20,9 @@ $routes->post('/findTutorial', function() {
     TutoController::findTutorial();
 });
 
-$routes->get('/currentTutorial', function() {
-    TutoController::currentTutorial();
+$routes->post('/addTutorial', function() {
+    TutoController::addTutorial();
 });
+
+
 

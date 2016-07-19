@@ -7,14 +7,16 @@ CREATE TABLE Usr (id  SERIAL PRIMARY KEY,
 CREATE TABLE Tutorial (id  SERIAL PRIMARY KEY, 
 						name varchar(255) NOT NULL, 
 						description varchar(255), 
-						link varchar(255) , 
-						added date 
+						link varchar(255), 
+						added date,
+                                                publisher varchar(50)
 						);
 
 CREATE TABLE Review (id  SERIAL PRIMARY KEY, 
 					review varchar(255) NOT NULL, 
 					usr_id int4 REFERENCES Usr(id), 
 					tutorial_id int4 REFERENCES Tutorial(id), 
+                                        stars integer,
 					added date 
 					);
 					
