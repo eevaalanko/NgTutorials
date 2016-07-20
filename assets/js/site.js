@@ -44,24 +44,6 @@ angular.module("myApp").controller(
                     resolve: {
                         items: function () {
                             return $scope.items;
-                        }
-                    }
-                });
-                modalInstance.result.then(function (selectedItem) {
-                    $scope.selected = selectedItem;
-                }, function () {
-                    $log.info('Modal dismissed at: ' + new Date());
-                });
-            };
-            $scope.items = ['item1', 'item2', 'item3'];
-            $scope.open = function (size) {
-                var modalInstance = $uibModal.open({
-                    templateUrl: 'myModalContent.html',
-                    controller: 'ModalInstanceCtrl',
-                    size: size,
-                    resolve: {
-                        items: function () {
-                            return $scope.items;
                         },
                         current: function () {
                             return $scope.current;
@@ -76,8 +58,36 @@ angular.module("myApp").controller(
             };
         });
 
-angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items, current) {
+angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $http, $uibModalInstance, items, current) {
     $scope.current = current;
+    $scope.reviews = null;
+    $scope.newReview = {tutorial_id: current.id};
+    $scope.getAllReviews = function () {
+        $http({
+            url: "allReviews",
+            method: "POST",
+            data:  current.id
+        }).then(function (result) {
+            console.log(result);
+            $scope.reviews = result.data;
+        });
+    };
+    var initReviews = function () {
+        $scope.getAllReviews();
+        console.log("tuto name: " + $scope.current.name);
+    };
+    initReviews();
+    $scope.addReview = function () {
+        $http({
+            url: "addReview",
+            method: "POST",
+            data: $scope.newReview
+        }).then(function (result) {
+            console.log(result);
+            initReviews();
+        });
+        $scope.newReview = {tutorial_id: current.id};
+    };
     $scope.items = items;
     $scope.selected = {
         item: $scope.items[0]

@@ -24,5 +24,13 @@ $routes->post('/addTutorial', function() {
     TutoController::addTutorial();
 });
 
+$routes->post('/allReviews', function() { 
+    TutoController::allReviews();
+});
+
+$routes->post('/addReview', function() {
+    TutoController::addReview();
+});
+
 
 

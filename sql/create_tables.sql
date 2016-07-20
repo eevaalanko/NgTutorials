@@ -16,8 +16,8 @@ CREATE TABLE Review (id  SERIAL PRIMARY KEY,
 					review varchar(255) NOT NULL, 
 					usr_id int4 REFERENCES Usr(id), 
 					tutorial_id int4 REFERENCES Tutorial(id), 
-                                        stars integer,
-					added date 
+					added date,
+                                        stars integer 
 					);
 					
 CREATE TABLE Favorites (id  SERIAL PRIMARY KEY, 

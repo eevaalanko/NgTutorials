@@ -2,6 +2,7 @@
 
 // Muista sisällyttää malliluokka require-komennolla!
 require 'app/models/tuto.php';
+require 'app/models/review.php';
 
 class TutoController extends BaseController {
 
@@ -29,6 +30,18 @@ class TutoController extends BaseController {
     public static function addTutorial() {
         $params = json_decode(file_get_contents("php://input"), true);
         Tuto::store($params);
+        echo json_encode($params);
+    }
+
+    public static function allReviews() {
+        $id = json_decode(file_get_contents("php://input"), true);
+        $reviews = Review::all($id);
+        echo json_encode($reviews);
+    }
+
+    public static function addReview() {
+        $params = json_decode(file_get_contents("php://input"), true);
+        Review::store($params);
         echo json_encode($params);
     }
 

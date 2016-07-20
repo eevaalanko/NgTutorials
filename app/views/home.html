@@ -46,33 +46,48 @@
     </div>
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
-        <h3 class="modal-title">{{'{{ current.name }} '}}</h3>
+            <h3 class="modal-title">{{'{{ current.name }} '}}</h3>
         </div>
         <div class="modal-body">
-        <h4>{{'{{ current.description }} '}}</h4>
-        <h4>Link to page: <a href="{{'{{ current.link }} '}}">{{'{{ current.link }} '}} </a> </h4>
-        </div>
-        <div class="modal-footer">
-        </div>
-        <div class="modal-header">
-        <h5 class="text-muted">Write a review. (You have to be a
-        registered user to review tutorials.)</h5>
+            <h4>{{'{{ current.description }} '}}</h4>
+            <h4>Link to page: <a href="{{'{{ current.link }} '}}">{{'{{ current.link }} '}} </a> </h4>
         </div>
         <div class="modal-body">
-        <form name="form" novalidate>
-        <input type="text" ng-model="" /><br />
-        </div> 
+            <div class="table-responsive">
+                <h4 class="text-muted">Reviews</h4>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Review</th>
+                            <th>Author</th>
+                            <th>Stars</th>
+                            <th>Added</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="review in reviews">
+                            <td>{{' {{review.review}} '}}</td> 
+                            <td>{{' {{review.usr_id}} '}}</td> 
+                            <td>{{' {{review.stars}} '}}</td>
+                            <td>{{' {{review.added}} '}}</td>
+                        </tr>                  
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal-body">           
+            <form name="reviewForm" novalidate>
+                <h4 class="form-heading text-muted">Write a review</h4>
+                <div class="form-group">
+                    <input type="text" ng-model="newReview.review" class="form-control" placeholder="write a short review" required autofocus /><br />
+                    <input type="number" ng-model="newReview.stars" placeholder="stars" /><br />
+                </div>
+                <button class="btn btn-danger" type="submit" ng-click="addReview()">Add review</button>
+            </form>
+        </div>
         <div class="modal-footer">
-        <button class="btn btn-primary" type="submit" ng-click="ok(form.$valid)">Submit</button>
-        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-        </form>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Exit</button>
         </div>
     </script>
-
-    <!--         <button type="button" class="btn btn-default" ng-click="open('lg')">Large modal</button>
-              <div ng-show="selected">Selection from a modal: {{'{{ selected }}'}}</div>-->
-
-
 </div>
 {% endblock %}

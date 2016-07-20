@@ -10,15 +10,10 @@ class Tuto extends BaseModel {
     }
 
     public static function all() {
-// Alustetaan kysely tietokantayhteydellämme
         $query = DB::connection()->prepare('SELECT * FROM Tutorial');
-// Suoritetaan kysely
         $query->execute();
-// Haetaan kyselyn tuottamat rivit
         $rows = $query->fetchAll();
         $tutos = array();
-
-// Käydään kyselyn tuottamat rivit läpi
         foreach ($rows as $row) {
 // Tämä on PHP:n hassu syntaksi alkion lisäämiseksi taulukkoon :)
             $tutos[] = new Tuto(array(
@@ -54,10 +49,10 @@ class Tuto extends BaseModel {
         // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
         // Alustetaan uusi Game-luokan olion käyttäjän syöttämillä arvoilla
         $tuto = new Tuto(array(
-        'name' => $params['name'],
-        'description' => $params['description'],
-        'link' => $params['link']
-       // 'publisher' => $params['publisher']
+            'name' => $params['name'],
+            'description' => $params['description'],
+            'link' => $params['link']
+                // 'publisher' => $params['publisher']
         ));
         // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
         $tuto->save();
@@ -68,7 +63,7 @@ class Tuto extends BaseModel {
         $query = DB::connection()->prepare("INSERT into Tutorial (name, description, link, added, publisher) values (:name, :description, :link, current_date, 'julkaisija') RETURNING id");
         // Muistathan, että olion attribuuttiin pääse syntaksilla $this->attribuutin_nimi
         $query->execute(array('name' => $this->name, 'description' => $this->description, 'link' => $this->link));
-        // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
     }
 
+  
 }
