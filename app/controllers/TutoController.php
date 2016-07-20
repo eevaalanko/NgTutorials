@@ -45,6 +45,12 @@ class TutoController extends BaseController {
         echo json_encode($params);
     }
 
+    public static function avgStars() {
+        $id = json_decode(file_get_contents("php://input"), true);
+        $stars = Review::avgStars($id);
+        echo json_encode($stars);
+    }
+
     public static function sandbox() {
         // Testaa koodiasi täällä
         echo 'Hello World!';

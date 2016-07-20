@@ -14,6 +14,19 @@ angular.module("myApp").controller(
                     console.log("Tutoriaalin nimi on: " + $scope.tutos[0].name);
                 });
             };
+            $scope.avgStars = function (id) {
+                $scope.stars = null;
+                $http({
+                    url: "avgStars",
+                    method: "POST",
+                    data: id
+                }).then(function (result) {
+                    console.log(result);
+                    $scope.stars = result;
+                });
+                return $scope.stars;
+            };
+
             $scope.openTutoPage = function (tuto) {
                 $scope.current = tuto;
                 $scope.open('lg');
@@ -35,30 +48,26 @@ angular.module("myApp").controller(
                 console.log("test");
             };
             init();
-            $scope.items = ['item1', 'item2', 'item3'];
             $scope.open = function (size) {
                 var modalInstance = $uibModal.open({
                     templateUrl: 'myModalContent.html',
                     controller: 'ModalInstanceCtrl',
                     size: size,
                     resolve: {
-                        items: function () {
-                            return $scope.items;
-                        },
                         current: function () {
                             return $scope.current;
                         }
                     }
                 });
-                modalInstance.result.then(function (selectedItem) {
-                    $scope.selected = selectedItem;
+                modalInstance.result.then(function () {
+
                 }, function () {
                     $log.info('Modal dismissed at: ' + new Date());
                 });
             };
         });
 
-angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $http, $uibModalInstance, items, current) {
+angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $http, $uibModalInstance, current) {
     $scope.current = current;
     $scope.reviews = null;
     $scope.newReview = {tutorial_id: current.id};
@@ -66,7 +75,7 @@ angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $http,
         $http({
             url: "allReviews",
             method: "POST",
-            data:  current.id
+            data: current.id
         }).then(function (result) {
             console.log(result);
             $scope.reviews = result.data;
@@ -88,10 +97,9 @@ angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $http,
         });
         $scope.newReview = {tutorial_id: current.id};
     };
-    $scope.items = items;
-    $scope.selected = {
-        item: $scope.items[0]
-    };
+    $scope.rate = 3;
+    $scope.max = 5;
+    $scope.min = 1;
     $scope.ok = function () {
         $uibModalInstance.close($scope.selected.item);
     };

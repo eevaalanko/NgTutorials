@@ -32,5 +32,10 @@ $routes->post('/addReview', function() {
     TutoController::addReview();
 });
 
+$routes->post('/avgStars', function() {
+    TutoController::avgStars();
+});
+
+
 
 

@@ -21,10 +21,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="tuto in tutos">
+                <tr ng-repeat="tuto in tutos" ng-init="stars = avgStars(tuto.id);">
+                    
                     <td><button type="button" class="btn btn-link" ng-click="openTutoPage(tuto)">
                             {{' {{tuto.name}} '}}</button></td>            
-                    <td>*** </td>
+                    <td uib-rating  ng-model="stars" read-only="isReadonly" aria-labelledby="default-rating" >{{' {{stars}} '}}</td> 
+                    <td>{{' {{stars}} '}}</td>
                     <td>{{' {{tuto.added}} '}}</td>
                 </tr>                  
             </tbody>
@@ -67,20 +69,20 @@
                     <tbody>
                         <tr ng-repeat="review in reviews">
                             <td>{{' {{review.review}} '}}</td> 
-                            <td>{{' {{review.usr_id}} '}}</td> 
-                            <td>{{' {{review.stars}} '}}</td>
-                            <td>{{' {{review.added}} '}}</td>
+                            <td>{{' {{review.usr_name}} '}}</td> 
+                            <td uib-rating ng-model="review.stars" read-only="isReadonly" aria-labelledby="default-rating"></td>
+                            <td>{{' {{review.added}} '}}</td>                            
                         </tr>                  
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="modal-body">           
-            <form name="reviewForm" novalidate>
+            <form name="reviewForm" >
                 <h4 class="form-heading text-muted">Write a review</h4>
                 <div class="form-group">
                     <input type="text" ng-model="newReview.review" class="form-control" placeholder="write a short review" required autofocus /><br />
-                    <input type="number" ng-model="newReview.stars" placeholder="stars" /><br />
+                    <span uib-rating ng-model="newReview.stars" max="max" min="min" aria-labelledby="default-rating"></span>
                 </div>
                 <button class="btn btn-danger" type="submit" ng-click="addReview()">Add review</button>
             </form>
