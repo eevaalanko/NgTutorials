@@ -14,18 +14,6 @@ angular.module("myApp").controller(
                     console.log("Tutoriaalin nimi on: " + $scope.tutos[0].name);
                 });
             };
-            $scope.avgStars = function (id) {
-                $scope.stars = null;
-                $http({
-                    url: "avgStars",
-                    method: "POST",
-                    data: id
-                }).then(function (result) {
-                    console.log(result);
-                    $scope.stars = result;
-                });
-                return $scope.stars;
-            };
 
             $scope.openTutoPage = function (tuto) {
                 $scope.current = tuto;
@@ -56,13 +44,19 @@ angular.module("myApp").controller(
                     resolve: {
                         current: function () {
                             return $scope.current;
+                        },
+                        initPage: function () {
+                            return $scope.initPage;
                         }
+
                     }
                 });
                 modalInstance.result.then(function () {
-
+                    init();
                 }, function () {
                     $log.info('Modal dismissed at: ' + new Date());
+                    init();
+
                 });
             };
         });
@@ -100,11 +94,31 @@ angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $http,
     $scope.rate = 3;
     $scope.max = 5;
     $scope.min = 1;
-    $scope.ok = function () {
-        $uibModalInstance.close($scope.selected.item);
+
+    $scope.modifyTuto = function () {
+        $http({
+            url: "updateTutorial",
+            method: "POST",
+            data: $scope.current
+        }).then(function (result) {
+            console.log(result);
+        });
+        $uibModalInstance.close();
     };
+
+    $scope.deleteTuto = function () {
+        $http({
+            url: "deleteTutorial",
+            method: "POST",
+            data: current.id
+        }).then(function (result) {
+            console.log(result);
+        });
+        $uibModalInstance.close();
+    };
+
     $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
+        $uibModalInstance.close();
     };
 });
 

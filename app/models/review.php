@@ -50,14 +50,4 @@ class Review extends BaseModel {
         $query->execute(array('review' => $this->review, 'stars' => $this->stars, 'tutorial_id' => $this->tutorial_id));
     }
 
-    public function avgStars($id) {
-        $query = DB::connection()->prepare('select CAST(AVG(stars)AS integer) from review where tutorial_id = :id LIMIT 1');
-        $query->execute(array('id' => $id));
-        $stars = $query->fetch();
-        if ($stars) {
-            return $stars;
-        }
-        return null;
-    }
-
 }

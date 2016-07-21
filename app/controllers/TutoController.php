@@ -33,6 +33,18 @@ class TutoController extends BaseController {
         echo json_encode($params);
     }
 
+    public static function updateTutorial() {
+        $params = json_decode(file_get_contents("php://input"), true);
+        Tuto::storeUpdated($params);
+        echo json_encode($params);
+    }
+
+    public static function deleteTutorial() {
+        $id = json_decode(file_get_contents("php://input"), true);
+        Tuto::delete($id);
+        echo json_encode($id);
+    }
+
     public static function allReviews() {
         $id = json_decode(file_get_contents("php://input"), true);
         $reviews = Review::all($id);
@@ -43,12 +55,6 @@ class TutoController extends BaseController {
         $params = json_decode(file_get_contents("php://input"), true);
         Review::store($params);
         echo json_encode($params);
-    }
-
-    public static function avgStars() {
-        $id = json_decode(file_get_contents("php://input"), true);
-        $stars = Review::avgStars($id);
-        echo json_encode($stars);
     }
 
     public static function sandbox() {

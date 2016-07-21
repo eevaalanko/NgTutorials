@@ -14,8 +14,8 @@ CREATE TABLE Tutorial (id  SERIAL PRIMARY KEY,
 
 CREATE TABLE Review (id  SERIAL PRIMARY KEY, 
 					review varchar(255) NOT NULL, 
-					usr_id int4 REFERENCES Usr(id), 
-					tutorial_id int4 REFERENCES Tutorial(id), 
+					usr_id int4 REFERENCES Usr(id) on delete cascade;
+					tutorial_id int4 REFERENCES Tutorial(id) on delete cascade; 
 					added date,
                                         stars integer 
 					);

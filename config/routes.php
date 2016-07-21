@@ -24,6 +24,14 @@ $routes->post('/addTutorial', function() {
     TutoController::addTutorial();
 });
 
+$routes->post('/updateTutorial', function() {
+    TutoController::updateTutorial();
+});
+
+$routes->post('/deleteTutorial', function() {
+    TutoController::deleteTutorial();
+});
+
 $routes->post('/allReviews', function() { 
     TutoController::allReviews();
 });
@@ -32,9 +40,8 @@ $routes->post('/addReview', function() {
     TutoController::addReview();
 });
 
-$routes->post('/avgStars', function() {
-    TutoController::avgStars();
-});
+
+
 
 
 
