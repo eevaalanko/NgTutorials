@@ -1,12 +1,22 @@
 
-/* global callback */
-
 var app = angular.module("myApp", ['ui.bootstrap', 'angularMoment']);
+
 angular.module("myApp").controller(
         "myCtrl",
         function ($scope, $http, $log, $uibModal) {
             $scope.current = null;
             $scope.newTuto = null;
+            $scope.newUser = null;
+            $scope.user = null;
+
+            $scope.getUser = function () {
+                $http.get('getUser').then(function (result) {
+                    console.log(result);
+                    if (!result.data == "") {
+                        $scope.user = result.data;
+                    }
+                });
+            };
             $scope.getAllTutos = function () {
                 $http.get('allTutorials').then(function (result) {
                     console.log(result);
@@ -31,22 +41,48 @@ angular.module("myApp").controller(
                 });
                 $scope.newTuto = null;
             };
+
+            $scope.login = function () {
+                $http({
+                    url: "login",
+                    method: "POST",
+                    data: $scope.newUser
+                }).then(function (result) {
+                    console.log(result);
+                    $scope.getUser();
+                });
+                $scope.newUser = null;
+            };
+
+            $scope.logout = function () {
+                $http.post('logout').then(function (result) {
+                    console.log(result);
+                });
+                $scope.user = null;
+            }
+
             var init = function () {
                 $scope.getAllTutos();
                 console.log("test");
+                $scope.getUser();
             };
+
+
+
+            $scope.alert = null;
+
             init();
             $scope.open = function (size) {
                 var modalInstance = $uibModal.open({
-                    templateUrl: 'myModalContent.html',
+                    templateUrl: 'tutorial',
                     controller: 'ModalInstanceCtrl',
                     size: size,
                     resolve: {
                         current: function () {
                             return $scope.current;
                         },
-                        initPage: function () {
-                            return $scope.initPage;
+                        user: function () {
+                            return $scope.user;
                         }
 
                     }
@@ -56,13 +92,31 @@ angular.module("myApp").controller(
                 }, function () {
                     $log.info('Modal dismissed at: ' + new Date());
                     init();
+                });
+            };
 
+            $scope.alert = function (size) {
+                var modalInstance = $uibModal.open({
+                    templateUrl: 'AlertContent.html',
+                    controller: 'AlertCtrl',
+                    size: size,
+                    resolve: {
+                    }
+                });
+                modalInstance.result.then(function () {
+                    init();
+                }, function () {
+                    $log.info('AlertModal dismissed at: ' + new Date());
+                    init();
                 });
             };
         });
 
-angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $http, $uibModalInstance, current) {
+
+
+angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $http, $uibModalInstance, current, user) {
     $scope.current = current;
+    $scope.user = user;
     $scope.reviews = null;
     $scope.newReview = {tutorial_id: current.id};
     $scope.getAllReviews = function () {
@@ -116,10 +170,14 @@ angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $http,
         });
         $uibModalInstance.close();
     };
-
     $scope.cancel = function () {
         $uibModalInstance.close();
     };
+});
+
+angular.module('myApp').controller('AlertCtrl', function ($scope, alert) {
+    $scope.alert = alert;
+
 });
 
 

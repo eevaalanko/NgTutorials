@@ -2,7 +2,7 @@
 
 // Muista sisällyttää malliluokka require-komennolla!
 require 'app/models/tuto.php';
-require 'app/models/review.php';
+
 
 class TutoController extends BaseController {
 
@@ -10,6 +10,12 @@ class TutoController extends BaseController {
         // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
         //    $_SESSION["currentTuto"] = "testi";
         View::make('home.html');
+    }
+    
+        public static function tutorial() {
+        // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
+        //    $_SESSION["currentTuto"] = "testi";
+        View::make('tutorial.html');
     }
 
     public static function signup() {
@@ -43,18 +49,6 @@ class TutoController extends BaseController {
         $id = json_decode(file_get_contents("php://input"), true);
         Tuto::delete($id);
         echo json_encode($id);
-    }
-
-    public static function allReviews() {
-        $id = json_decode(file_get_contents("php://input"), true);
-        $reviews = Review::all($id);
-        echo json_encode($reviews);
-    }
-
-    public static function addReview() {
-        $params = json_decode(file_get_contents("php://input"), true);
-        Review::store($params);
-        echo json_encode($params);
     }
 
     public static function sandbox() {

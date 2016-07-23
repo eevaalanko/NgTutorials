@@ -1,99 +1,42 @@
 {% extends "base.html" %}{% block content %}
+<div></div>   
+
+<!-- "user: " = {{ '{{user}}' }} -->
+<!--     "tutos: " {{ '{{tutos}}' }}-->       
+
+<div class ="h3 text-muted">Sign up and you'll be able to add and rate tutorials!</div>
+<div class="table-responsive">
+    <h4 class="text-muted">Top Rated Tutorials</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Stars</th>
+                <th>Added</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="tuto in tutos">                   
+                <td><button type="button" class="btn btn-link" ng-click="openTutoPage(tuto)">
+                        {{' {{tuto.name}} '}}</button></td>            
+                <td uib-rating  ng-model="tuto.stars" read-only="isReadonly" aria-labelledby="default-rating" ></td> 
+                <td>{{' {{tuto.added}} '}}</td>
+            </tr>                  
+        </tbody>
+    </table>
+</div>
 <div>
-    <!--     "tutos: " {{ '{{tutos}}' }}-->
-    <div class="table-responsive">
-        <h4 class="text-muted">Top Rated Tutorials</h4>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Stars</th>
-                    <th>Added</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="tuto in tutos">                   
-                    <td><button type="button" class="btn btn-link" ng-click="openTutoPage(tuto)">
-                            {{' {{tuto.name}} '}}</button></td>            
-                    <td uib-rating  ng-model="tuto.stars" read-only="isReadonly" aria-labelledby="default-rating" ></td> 
-                    <td>{{' {{tuto.added}} '}}</td>
-                </tr>                  
-            </tbody>
-        </table>
-    </div>
-    <div>
-        <form class="col-xs-6">
-            <h4 class="form-heading text-muted">Add a new  tutorial</h4>
-            <div class="form-group ">
-                <label for="inputName" class="sr-only">Name</label>
-                <input type="text" id="inputTutoName" class="form-control" ng-model="newTuto.name" placeholder="Tutorial name" required autofocus>
-                <label for="inputLink" class="sr-only">Link</label>
-                <input type="text" id="inputLink" class="form-control" ng-model="newTuto.link" placeholder="Link to tutorial" required>
-                <label for="inputDescription" class="sr-only">Description</label>
-                <input type="text" id="inputDescription" class="form-control" ng-model="newTuto.description" placeholder="Write a short description" required>
-            </div>
-            <button class="btn btn-danger" type="submit" ng-click="addTuto()">Submit</button>
-        </form>
-    </div>
-<script type="text/ng-template" id="myModalContent.html">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title">{{'{{ current.name }} '}}</h3>
-    </div>
-    <div class="modal-body">
-        <h4>{{'{{ current.description }} '}}</h4>
-        <h4>Link to page: <a href="{{'{{ current.link }} '}}">{{'{{ current.link }} '}} </a> </h4>
-    </div>
-    <div class="modal-body">
-        <div class="table-responsive">
-            <h4 class="text-muted">Reviews</h4>
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Review</th>
-                        <th>Author</th>
-                        <th>Stars</th>
-                        <th>Added</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="review in reviews">
-                        <td>{{' {{review.review}} '}}</td> 
-                        <td>{{' {{review.usr_name}} '}}</td> 
-                        <td uib-rating ng-model="review.stars" read-only="isReadonly" aria-labelledby="default-rating"></td>
-                        <td>{{' {{review.added}} '}}</td>                            
-                    </tr>                  
-                </tbody>
-            </table>
+    <form class="col-xs-6" ng-show="user != null">
+        <h4 class="form-heading text-muted">Add a new  tutorial</h4>
+        <div class="form-group ">
+            <label for="inputName" class="sr-only">Name</label>
+            <input type="text" id="inputTutoName" class="form-control" ng-model="newTuto.name" placeholder="Tutorial name" required autofocus>
+            <label for="inputLink" class="sr-only">Link</label>
+            <input type="text" id="inputLink" class="form-control" ng-model="newTuto.link" placeholder="Link to tutorial" required>
+            <label for="inputDescription" class="sr-only">Description</label>
+            <input type="text" id="inputDescription" class="form-control" ng-model="newTuto.description" placeholder="Write a short description" required>
         </div>
-        <form name="reviewForm" >
-            <h4 class="form-heading text-muted">Write a review</h4>
-            <div class="form-group">
-                <input type="text" ng-model="newReview.review" class="form-control" placeholder="write a short review" required autofocus /><br />
-                <span uib-rating ng-model="newReview.stars" max="max" min="min" aria-labelledby="default-rating"></span>
-            </div>
-            <button class="btn btn-danger" type="submit" ng-click="addReview()">Add review</button>
-        </form> 
-        <div class="row">
-            <form class="col-xs-4">
-                <h4 class="text-muted">Modify tutorial</h4>
-                <div class="form-group ">
-                    <label for="inputName" class="sr-only">Name</label>
-                        <input type="text" id="inputTutoName" class="form-control" ng-model="current.name" ng-value="current.name" required autofocus>
-                        <input type="text" id="inputTutoName" class="form-control" ng-model="current.link" ng-value="current.link" required >        
-                        <input type="text" id="inputTutoName" class="form-control" ng-model="current.description" ng-value="current.description" required>
-                </div>
-                <button class="btn btn-danger" type="submit" ng-click="modifyTuto()">Submit</button>
-                <button class="btn btn-danger" type="submit" ng-click="cancel()">Cancel</button>
-            </form>
-            <div class="col-xs-3">
-                <h4 class="text-muted">Delete tutorial</h4>
-                <button class="btn btn-danger"  ng-click="deleteTuto()">Delete</button>
-            </div>
-        </div>
-    </div>
-    <div class="modal-footer"> 
-    </div>
-</script>
+        <button class="btn btn-danger" type="submit" ng-click="addTuto()">Submit</button>
+    </form>
 </div>
 {% endblock %}

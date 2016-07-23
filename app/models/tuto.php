@@ -10,7 +10,7 @@ class Tuto extends BaseModel {
     }
 
     public static function all() {
-        $query = DB::connection()->prepare('select tutorial.id, name, link, description, tutorial.added, tutorial.publisher, CAST(AVG(review.stars)AS integer) as stars from tutorial  left join review on tutorial.id = review.tutorial_id group by tutorial.id, tutorial.name, link, description, tutorial.publisher, tutorial.added;');
+        $query = DB::connection()->prepare('select tutorial.id, name, link, description, tutorial.added, tutorial.publisher, CAST(AVG(review.stars)AS integer) as stars from tutorial  left join review on tutorial.id = review.tutorial_id group by tutorial.id, tutorial.name, link, description, tutorial.publisher, tutorial.added order by stars DESC;');
         $query->execute();
         $rows = $query->fetchAll();
         $tutos = array();

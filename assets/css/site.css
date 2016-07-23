@@ -1,14 +1,22 @@
 #main-container{
-  max-width: 1200px;
-  padding: 10px 25px;
-  margin: 0px auto;
+    max-width: 1200px;
+    padding: 10px 25px;
+    margin: 0px auto;
 }
 
 .navbar .container-fluid{
-  max-width: 1200px;
-  margin: 0px auto;
+    max-width: 1200px;
+    margin: 0px auto;
 }
 
 #angular-logo {
     padding: 50px 30px 50px 30px;
+}
+
+.h-divider{
+    margin-top:5px;
+    margin-bottom:5px;
+    height:1px;
+    width:100%;
+    border-top:1px solid gray;
 }

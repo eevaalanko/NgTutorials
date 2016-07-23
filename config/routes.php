@@ -4,12 +4,28 @@ $routes->get('/', function() {
     TutoController::index();
 });
 
+$routes->get('/tutorial', function() {
+    TutoController::tutorial();
+});
+
 $routes->get('/hiekkalaatikko', function() {
     TutoController::sandbox();
 });
 
 $routes->get('/signup', function() {
     TutoController::signup();
+});
+
+$routes->post('/login', function() {
+    UserController::login();
+});
+
+$routes->post('/logout', function() {
+    UserController::logout();
+});
+
+$routes->get('/getUser', function() {
+    UserController::getUser();
 });
 
 $routes->get('/allTutorials', function() {
@@ -32,12 +48,12 @@ $routes->post('/deleteTutorial', function() {
     TutoController::deleteTutorial();
 });
 
-$routes->post('/allReviews', function() { 
-    TutoController::allReviews();
+$routes->post('/allReviews', function() {
+    ReviewController::allReviews();
 });
 
 $routes->post('/addReview', function() {
-    TutoController::addReview();
+    ReviewController::addReview();
 });
 
 

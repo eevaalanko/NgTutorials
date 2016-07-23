@@ -1,0 +1,66 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+    <h3 class="modal-title">{{'{{ current.name }} '}}</h3>
+</div>
+<div class="modal-body">
+    <h4>{{'{{ current.description }} '}}</h4>
+    <h4>Link to page: <a href="{{'{{ current.link }} '}}">{{'{{ current.link }} '}} </a> </h4>
+</div>
+<div class="modal-dialog">
+    <div class="table-responsive">
+        <h4 class="text-muted">Reviews</h4>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Review</th>
+                    <th>Author</th>
+                    <th>Stars</th>
+                    <th>Added</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="review in reviews">
+                    <td>{{' {{review.review}} '}}</td> 
+                    <td>{{' {{review.usr_name}} '}}</td> 
+                    <td uib-rating ng-model="review.stars" read-only="isReadonly" aria-labelledby="default-rating"></td>
+                    <td>{{' {{review.added}} '}}</td>                            
+                </tr>                  
+            </tbody>
+        </table>
+    </div>
+    </div>
+     <div class="modal-dialog" ng-show="user!=null">
+    <div class="h-divider">
+    </div><div>
+        <form name="reviewForm" >
+            <h4 class="form-heading text-muted">Write a review</h4>
+            <div class="form-group">
+                <input type="text" ng-model="newReview.review" class="form-control" placeholder="write a short review" required autofocus /><br />
+                <span uib-rating ng-model="newReview.stars" max="max" min="min" aria-labelledby="default-rating"></span>
+            </div>
+            <button class="btn btn-danger" type="submit" ng-click="addReview()">Add review</button>
+        </form> 
+        <div class="h-divider">
+        </div>
+        <div>
+            <form >
+                <h4 class="text-muted">Modify tutorial</h4>
+                <div class="form-group ">
+                    <label for="inputName" class="sr-only">Name</label>
+                    <input type="text" id="inputTutoName" class="form-control" ng-model="current.name" ng-value="current.name" required autofocus>
+                    <input type="text" id="inputTutoName" class="form-control" ng-model="current.link" ng-value="current.link" required >        
+                    <input type="text" id="inputTutoName" class="form-control" ng-model="current.description" ng-value="current.description" required>
+                </div>
+                <button class="btn btn-danger" type="submit" ng-click="modifyTuto()">Submit</button>
+                <button class="btn btn-danger" type="submit" ng-click="cancel()">Cancel</button>
+            </form></div>
+        <div class="h-divider">
+        </div>
+        <div>
+            <h4 class="text-muted">Delete tutorial</h4>
+            <button class="btn btn-danger"  ng-click="deleteTuto()">Delete</button>
+        </div>
+    </div>
+</div>
+<div class="modal-footer"> 
+</div>

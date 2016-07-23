@@ -18,7 +18,7 @@
         <link href="{{base_path}}/assets/css/signin.css" rel="stylesheet">
     </head>
 
-    <body >
+    <body   ng-controller='myCtrl' >
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container-fluid">
 
@@ -34,17 +34,20 @@
                 </div>
 
                 <div class="collapse navbar-collapse" id="navigation">
-                    <form class="navbar-form navbar-right">
+                    <form class="navbar-form navbar-right" ng-show="user==null" >
                         <div class="form-group">
-                            <input type="text" placeholder="Email" ng-model="user.name" class="form-control" required autofocus/>
+                            <input type="text" placeholder="Name" ng-model="newUser.name" class="form-control" required autofocus/>
                         </div>
                         <div class="form-group">
-                            <input type="password" ng-model="user.password" placeholder="Password" class="form-control"/>
+                            <input type="password" ng-model="newUser.password" placeholder="Password" class="form-control"/>
                         </div>
-                        <button type="submit" class="btn btn-danger">Log in</button>
+                        <button type="submit" class="btn btn-danger" ng-click="login()">Log in</button>
                         <a href="{{base_path}}/signup" class="btn btn-danger" role="button">Sign Up</a>
                     </form>
-
+                    <div ng-show="user!=null" class="navbar-right">
+                        <a class="text-muted">Logged in as: {{' {{user.name}} '}}</a>
+                        <button type="button" class="btn btn-danger" ng-click="logout()">Log out</button>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -53,8 +56,7 @@
                  width="30" height="30">
             <h3 class="text-muted">Find and rate AngularJs tutorials. </h3>
         </div>
-
-        <div id="main-container"  ng-controller='myCtrl'>
+        <div id="main-container">
             <!-- Dynaaminen sisältö tulee tähän -->
             {% block content %}{% endblock %}
         </div>
@@ -75,7 +77,6 @@
 
         <!-- Omat skriptitiedostomme -->
         <script src="{{base_path}}/assets/js/site.js"></script>
-        <script src="{{base_path}}/assets/js/addTutorial.js"></script>
         {% endblock %}
     </body>
 </html>
