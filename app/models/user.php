@@ -30,18 +30,15 @@ class User extends BaseModel {
         // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
         // Alustetaan uusi Game-luokan olion käyttäjän syöttämillä arvoilla
         $user = new User(array(
-                'email' => $row['email'],
-                'name' => $row['name'],
+                'email' => $params['email'],
+                'name' => $params['name'],
                 'password' => $params['password']
         ));
-        // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
         $user->save();
     }
 
     public function save() {
-        // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
-        $query = DB::connection()->prepare("INSERT into Usr (email, name, password) values (:email, :name, :password) RETURNING id");
-        // Muistathan, että olion attribuuttiin pääse syntaksilla $this->attribuutin_nimi
+        $query = DB::connection()->prepare("INSERT into Usr (email, name, password) values (:email, :name, :password)");
         $query->execute(array('email' => $this->email, 'name' => $this->name, 'password' => $this->password));
     }
 

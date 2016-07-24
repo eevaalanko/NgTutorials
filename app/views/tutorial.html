@@ -22,16 +22,16 @@
                 <tr ng-repeat="review in reviews">
                     <td>{{' {{review.review}} '}}</td> 
                     <td>{{' {{review.usr_name}} '}}</td> 
-                    <td uib-rating ng-model="review.stars" read-only="isReadonly" aria-labelledby="default-rating"></td>
+                    <td uib-rating ng-model="review.stars" read-only="true" aria-labelledby="default-rating"></td>
                     <td>{{' {{review.added}} '}}</td>                            
                 </tr>                  
             </tbody>
         </table>
     </div>
-    </div>
-     <div class="modal-dialog" ng-show="user!=null">
-    <div class="h-divider">
-    </div><div>
+</div>
+<div class="modal-dialog" ng-show="user != null">
+    <div class="h-divider"></div>
+    <div>
         <form name="reviewForm" >
             <h4 class="form-heading text-muted">Write a review</h4>
             <div class="form-group">

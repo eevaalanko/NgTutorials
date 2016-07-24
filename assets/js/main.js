@@ -7,8 +7,8 @@ angular.module("myApp").controller(
             $scope.current = null;
             $scope.newTuto = null;
             $scope.newUser = null;
-            $scope.user = null;
-
+            $scope.user = {name: null};
+            $scope.alert = null;
             $scope.getUser = function () {
                 $http.get('getUser').then(function (result) {
                     console.log(result);
@@ -24,7 +24,6 @@ angular.module("myApp").controller(
                     console.log("Tutoriaalin nimi on: " + $scope.tutos[0].name);
                 });
             };
-
             $scope.openTutoPage = function (tuto) {
                 $scope.current = tuto;
                 $scope.open('lg');
@@ -41,7 +40,6 @@ angular.module("myApp").controller(
                 });
                 $scope.newTuto = null;
             };
-
             $scope.login = function () {
                 $http({
                     url: "login",
@@ -49,16 +47,17 @@ angular.module("myApp").controller(
                     data: $scope.newUser
                 }).then(function (result) {
                     console.log(result);
-                    $scope.getUser();
+                    $scope.user = result.data;
                 });
                 $scope.newUser = null;
+                init();
             };
-
             $scope.logout = function () {
                 $http.post('logout').then(function (result) {
                     console.log(result);
                 });
-                $scope.user = null;
+                $scope.user = {name: null};
+                init();
             }
 
             var init = function () {
@@ -66,12 +65,6 @@ angular.module("myApp").controller(
                 console.log("test");
                 $scope.getUser();
             };
-
-
-
-            $scope.alert = null;
-
-            init();
             $scope.open = function (size) {
                 var modalInstance = $uibModal.open({
                     templateUrl: 'tutorial',
@@ -95,90 +88,50 @@ angular.module("myApp").controller(
                 });
             };
 
-            $scope.alert = function (size) {
+            $scope.signup = function (size) {
                 var modalInstance = $uibModal.open({
-                    templateUrl: 'AlertContent.html',
-                    controller: 'AlertCtrl',
-                    size: size,
-                    resolve: {
-                    }
+                    templateUrl: 'signup',
+                    controller: 'SignupCtrl',
+                    size: size
                 });
-                modalInstance.result.then(function () {
-                    init();
+                modalInstance.result.then(function (signedUp) {
+                    $scope.signedUp = signedUp;
+                    if (signedUp) {
+                        $scope.openMessage(2);
+                    }
+                    ;
                 }, function () {
-                    $log.info('AlertModal dismissed at: ' + new Date());
+                    $log.info('SignupModal dismissed at: ' + new Date());
                     init();
                 });
             };
+
+            $scope.messages = {1: "Wrong username or password",
+                2: "You have successfully signed up to ngTutorials",
+                3: "Invalid fields",
+                4: "User name or email is already in use.",
+                5: "Bye for now"
+            };
+
+            $scope.openMessage = function (msg) {
+                $scope.currentMsg = $scope.messages[msg];
+                $uibModal.open({
+                    templateUrl: 'message',
+                    controller: 'MessageCtrl',
+                    size: 'sm',
+                    resolve: {
+                        currentMsg: function () {
+                            return $scope.currentMsg;
+                        }
+                    }
+                });
+            };
+
+            init();
         });
 
 
 
-angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $http, $uibModalInstance, current, user) {
-    $scope.current = current;
-    $scope.user = user;
-    $scope.reviews = null;
-    $scope.newReview = {tutorial_id: current.id};
-    $scope.getAllReviews = function () {
-        $http({
-            url: "allReviews",
-            method: "POST",
-            data: current.id
-        }).then(function (result) {
-            console.log(result);
-            $scope.reviews = result.data;
-        });
-    };
-    var initReviews = function () {
-        $scope.getAllReviews();
-        console.log("tuto name: " + $scope.current.name);
-    };
-    initReviews();
-    $scope.addReview = function () {
-        $http({
-            url: "addReview",
-            method: "POST",
-            data: $scope.newReview
-        }).then(function (result) {
-            console.log(result);
-            initReviews();
-        });
-        $scope.newReview = {tutorial_id: current.id};
-    };
-    $scope.rate = 3;
-    $scope.max = 5;
-    $scope.min = 1;
-
-    $scope.modifyTuto = function () {
-        $http({
-            url: "updateTutorial",
-            method: "POST",
-            data: $scope.current
-        }).then(function (result) {
-            console.log(result);
-        });
-        $uibModalInstance.close();
-    };
-
-    $scope.deleteTuto = function () {
-        $http({
-            url: "deleteTutorial",
-            method: "POST",
-            data: current.id
-        }).then(function (result) {
-            console.log(result);
-        });
-        $uibModalInstance.close();
-    };
-    $scope.cancel = function () {
-        $uibModalInstance.close();
-    };
-});
-
-angular.module('myApp').controller('AlertCtrl', function ($scope, alert) {
-    $scope.alert = alert;
-
-});
 
 
 

@@ -1,14 +1,17 @@
-{% extends "base.html" %}{% block content %}
-    <div class="container">
-      <form class="form-signin">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+</div>
+
+<div class="modal-body">        
+    <form class="form-signin">
         <h2 class="form-signin-heading">Create an account</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-      </form>
-    </div> 
-{% endblock %}
+        <input type="email" class="form-control" ng-model="newUser.email" placeholder="Email address" required autofocus>
+        <input type ="text" class="form-control" ng-model="newUser.name" placeholder="User name" required>
+        <input type="password" id="inputPassword" class="form-control" ng-model="newUser.password"placeholder="Password" required>
+        <button class="btn btn-lg btn-primary" type="submit" ng-click="signup()">Sign up</button>
+        <button class="btn btn-lg btn-danger" ng-click="cancel()">Cancel</button>
+    </form>
+</div>
+
 
 

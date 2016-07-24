@@ -13,7 +13,7 @@ $routes->get('/hiekkalaatikko', function() {
 });
 
 $routes->get('/signup', function() {
-    TutoController::signup();
+    UserController::signup();
 });
 
 $routes->post('/login', function() {
@@ -26,6 +26,10 @@ $routes->post('/logout', function() {
 
 $routes->get('/getUser', function() {
     UserController::getUser();
+});
+
+$routes->post('/addUser', function() {
+    UserController::addUser();
 });
 
 $routes->get('/allTutorials', function() {
@@ -55,6 +59,12 @@ $routes->post('/allReviews', function() {
 $routes->post('/addReview', function() {
     ReviewController::addReview();
 });
+
+$routes->get('/message', function() {
+    TutoController::message();
+});
+
+
 
 
 

@@ -3,23 +3,24 @@
 // Muista sisällyttää malliluokka require-komennolla!
 require 'app/models/tuto.php';
 
-
 class TutoController extends BaseController {
 
     public static function index() {
         // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-        //    $_SESSION["currentTuto"] = "testi";
         View::make('home.html');
     }
-    
-        public static function tutorial() {
-        // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-        //    $_SESSION["currentTuto"] = "testi";
+
+    public static function tutorial() {
         View::make('tutorial.html');
     }
 
     public static function signup() {
         View::make('signup.html');
+    }
+
+    public static function message() {
+        // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
+        View::make('message.html');
     }
 
     public static function allTutorials() {
