@@ -10,12 +10,13 @@ angular.module("myApp").controller(
             $scope.user = null;
             $scope.alert = null;
 
-            var getUser = function () {
-                $http.get('getUserTEST').then(function (result) {
+            $scope.getUser = function () {
+                $http.get('getUser').then(function (result) {
                     console.log(result);
                     if (result.data !== "") {
                         $scope.user = result.data;
-                    };
+                    }
+                    ;
                 });
             };
 
@@ -45,7 +46,8 @@ angular.module("myApp").controller(
                     $scope.openMessage(6);
                 } else {
                     $scope.openMessage(3);
-                };
+                }
+                ;
             };
             $scope.login = function () {
                 $http({
@@ -54,20 +56,22 @@ angular.module("myApp").controller(
                     data: $scope.newUser
                 }).then(function (result) {
                     console.log(result);
+                    $scope.newUser = null;
+                    $scope.getUser();
                 });
-                $scope.newUser = null;
-                getUser();
             };
             $scope.logout = function () {
                 $http.post('logout').then(function (result) {
                     console.log(result);
                 });
                 $scope.user = null;
+                init();
             };
             var init = function () {
                 $scope.getAllTutos();
+                $scope.getUser();
                 console.log("test");
-                getUser();
+
             };
             $scope.open = function (size) {
                 var modalInstance = $uibModal.open({

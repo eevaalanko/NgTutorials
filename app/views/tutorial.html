@@ -21,7 +21,7 @@
             <tbody>
                 <tr ng-repeat="review in reviews">
                     <td>{{' {{review.review}} '}}</td> 
-                    <td>{{' {{review.usr_name}} '}}</td> 
+                    <td>{{' {{review.reviewer}} '}}</td> 
                     <td uib-rating ng-model="review.stars" read-only="true" aria-labelledby="default-rating"></td>
                     <td>{{' {{review.added}} '}}</td>                            
                 </tr>                  

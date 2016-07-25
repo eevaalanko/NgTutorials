@@ -2,7 +2,7 @@
 
 class Review extends BaseModel {
 
-    public $id, $review, $usr_id, $tutorial_id, $added, $stars, $usr_name;
+    public $id, $review, $usr_id, $tutorial_id, $added, $stars, $reviewer;
 
 // Konstruktori
     public function __construct($attributes) {
@@ -10,7 +10,8 @@ class Review extends BaseModel {
     }
 
     public static function all($id) {
-        $query = DB::connection()->prepare('SELECT * FROM Review WHERE tutorial_id = :id');
+        $query = DB::connection()->prepare('SELECT Review.id, review, usr_id, tutorial_id, added, stars, usr.name as reviewer FROM Review 
+                                            left join usr on usr_id = usr.id WHERE tutorial_id = :id order by added;');
         $query->execute(array('id' => $id));
         $rows = $query->fetchAll();
         $reviews = array();
@@ -23,7 +24,7 @@ class Review extends BaseModel {
                 'tutorial_id' => $row['tutorial_id'],
                 'added' => $row['added'],
                 'stars' => $row['stars'],
-                'usr_name' => $row['usr_name'],
+                'reviewer' => $row['reviewer']
             ));
         }
         return $reviews;
@@ -35,8 +36,7 @@ class Review extends BaseModel {
         $review = new Review(array(
             'review' => $params['review'],
             'stars' => $params['stars'],
-            // 'usr_id' => $params['usr_id'],
-            // 'usr_name' => $params['usr_name'],
+            'usr_id' => $params['usr_id'],
             'tutorial_id' => $params['tutorial_id']
         ));
         // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
@@ -45,9 +45,9 @@ class Review extends BaseModel {
 
     public function save() {
         // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
-        $query = DB::connection()->prepare("INSERT into Review (review, usr_name, tutorial_id, added, stars) values (:review, 'Sarcasmus Maximus', :tutorial_id, current_date, :stars) RETURNING id");
+        $query = DB::connection()->prepare("INSERT into Review (review, usr_id, tutorial_id, added, stars) values (:review, :usr_id, :tutorial_id, current_date, :stars) RETURNING id");
         // Muistathan, että olion attribuuttiin pääse syntaksilla $this->attribuutin_nimi
-        $query->execute(array('review' => $this->review, 'stars' => $this->stars, 'tutorial_id' => $this->tutorial_id));
+        $query->execute(array('review' => $this->review, 'usr_id' => $this->usr_id, 'stars' => $this->stars, 'tutorial_id' => $this->tutorial_id));
     }
 
 }

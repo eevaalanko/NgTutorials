@@ -29,8 +29,8 @@ class UserController extends BaseController {
         echo json_encode($params);
     }
 
-    public static function getUserTEST() {
-        $id = self::getUser();
+    public static function getUser() {
+        $id = self::getUserID();
         if ($id) {
             $user = User::find($id);
             echo json_encode($user);
