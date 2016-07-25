@@ -42,7 +42,7 @@ angular.module("myApp").controller(
                         console.log(result);
                         init();
                     });
-                    $scope.newTuto = null;
+                    $scope.newTuto = {'publisher': $scope.user.id};
                     $scope.openMessage(6);
                 } else {
                     $scope.openMessage(3);
@@ -57,6 +57,7 @@ angular.module("myApp").controller(
                 }).then(function (result) {
                     console.log(result);
                     $scope.newUser = null;
+                    $scope.newTuto = {'publisher': $scope.user.id};
                     $scope.getUser();
                 });
             };
@@ -71,6 +72,10 @@ angular.module("myApp").controller(
                 $scope.getAllTutos();
                 $scope.getUser();
                 console.log("test");
+                if ($scope.user !== null) {
+                    $scope.newTuto = {'publisher': $scope.user.id};
+                }
+                ;
 
             };
             $scope.open = function (size) {

@@ -52,10 +52,10 @@ class Tuto extends BaseModel {
         // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
         // Alustetaan uusi Game-luokan olion käyttäjän syöttämillä arvoilla
         $tuto = new Tuto(array(
-            'name' => $params['name'],
-            'description' => $params['description'],
-            'link' => $params['link']
-                // 'publisher' => $params['publisher']
+        'name' => $params['name'],
+        'description' => $params['description'],
+        'link' => $params['link'],
+        'publisher' => $params['publisher']
         ));
         // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
         $tuto->save();
@@ -63,9 +63,9 @@ class Tuto extends BaseModel {
 
     public function save() {
         // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
-        $query = DB::connection()->prepare("INSERT into Tutorial (name, description, link, added, publisher) values (:name, :description, :link, current_date, 'julkaisija') RETURNING id");
+        $query = DB::connection()->prepare("INSERT into Tutorial (name, description, link, added, publisher) values (:name, :description, :link, current_date, :publisher) RETURNING id");
         // Muistathan, että olion attribuuttiin pääse syntaksilla $this->attribuutin_nimi
-        $query->execute(array('name' => $this->name, 'description' => $this->description, 'link' => $this->link));
+        $query->execute(array('name' => $this->name, 'description' => $this->description, 'link' => $this->link, 'publisher' => $this->publisher));
     }
 
     public static function storeUpdated($params) {
@@ -89,6 +89,7 @@ class Tuto extends BaseModel {
 
     public static function delete($id) {
         $query = DB::connection()->prepare('DELETE from Tutorial  where id = :id ');
-        $query->execute(array('id' => $id));       
+        $query->execute(array('id' => $id));
     }
+
 }

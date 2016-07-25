@@ -9,7 +9,7 @@ CREATE TABLE Tutorial (id  SERIAL PRIMARY KEY,
 						description varchar(255), 
 						link varchar(255), 
 						added date,
-                                                publisher varchar(50)
+                                                publisher int4 REFERENCES Tutorial(id) on delete cascade; 
 						);
 
 CREATE TABLE Review (id  SERIAL PRIMARY KEY, 
