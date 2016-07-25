@@ -28,6 +28,10 @@ $routes->get('/getUser', function() {
     UserController::getUser();
 });
 
+$routes->get('/getUserTEST', function() {
+    UserController::getUserTEST();
+});
+
 $routes->post('/addUser', function() {
     UserController::addUser();
 });

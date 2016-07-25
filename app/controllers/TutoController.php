@@ -2,6 +2,7 @@
 
 // Muista sisällyttää malliluokka require-komennolla!
 require 'app/models/tuto.php';
+require 'app/models/user.php';
 
 class TutoController extends BaseController {
 
@@ -51,14 +52,22 @@ class TutoController extends BaseController {
         Tuto::delete($id);
         echo json_encode($id);
     }
+    
+        public static function getUserTEST() {
+        $id = self::getUser();
+        echo $id;
+      //  $user = User::find($id);
+      //  echo json_encode($user);
+    }
 
     public static function sandbox() {
         // Testaa koodiasi täällä
         echo 'Hello World!';
-        $tutos = Tuto::all();
-        echo 'ekatuto: ';
-        $eka = Tuto::find(1);
-        $testi = 'addTutorial';
+       // $tutos = Tuto::all();
+       // echo 'ekatuto: ';
+       // $eka = Tuto::find(1);
+       // $testi = 'addTutorial';
+        $testi = self::getUserTEST();
     }
 
 }

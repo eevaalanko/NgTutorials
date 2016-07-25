@@ -2,11 +2,26 @@
 
 class User extends BaseModel {
 
-    public $id, $email, $name, $password;
+    public $id, $email, $name;
 
 // Konstruktori
     public function __construct($attributes) {
         parent::__construct($attributes);
+    }
+
+    public static function find($id) {
+        $query = DB::connection()->prepare('SELECT * FROM Usr WHERE id = :id LIMIT 1');
+        $query->execute(array('id' => $id['id']));
+        $row = $query->fetch();
+        if ($row) {
+            $user = new User(array(
+                'id' => $row['id'],
+                'email' => $row['email'],
+                'name' => $row['name']
+            ));
+            return $user;
+        }
+        return null;
     }
 
     public static function authenticate($params) {

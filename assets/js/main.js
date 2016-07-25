@@ -7,21 +7,23 @@ angular.module("myApp").controller(
             $scope.current = null;
             $scope.newTuto = null;
             $scope.newUser = null;
-            $scope.userID =  null;
+            $scope.user = null;
             $scope.alert = null;
+
             var getUser = function () {
-                $http.get('getUser').then(function (result) {
+                $http.get('getUserTEST').then(function (result) {
                     console.log(result);
                     if (result.data !== "") {
-                        $scope.userID = result.data[0];                       
-                    }
+                        $scope.user = result.data;
+                    };
                 });
             };
+
             $scope.getAllTutos = function () {
                 $http.get('allTutorials').then(function (result) {
                     console.log(result);
                     $scope.tutos = result.data;
-                    console.log("Tutoriaalin nimi on: " + $scope.tutos[0].name);
+                    console.log("Tutoriaalin nimi on: " + $scope.tutos[2]);
                 });
             };
             $scope.openTutoPage = function (tuto) {
@@ -40,11 +42,10 @@ angular.module("myApp").controller(
                         init();
                     });
                     $scope.newTuto = null;
-                    $scope.openMessage[6];
+                    $scope.openMessage(6);
                 } else {
-                    $scope.openMessage[3];
-                }
-                ;
+                    $scope.openMessage(3);
+                };
             };
             $scope.login = function () {
                 $http({
@@ -61,9 +62,8 @@ angular.module("myApp").controller(
                 $http.post('logout').then(function (result) {
                     console.log(result);
                 });
-                $scope.userID =  null;
-            }
-
+                $scope.user = null;
+            };
             var init = function () {
                 $scope.getAllTutos();
                 console.log("test");

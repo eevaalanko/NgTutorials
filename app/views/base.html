@@ -32,16 +32,16 @@
                     <a class="navbar-brand" href="{{base_path}}">NgTutorials</a>
                 </div>
                 <form class="navbar-form navbar-right">
-                    <div class="form-group" ng-show="userID==null">
+                    <div class="form-group" ng-show="user==null">
                         <input type="text" placeholder="Name" ng-model="newUser.name" class="form-control" required autofocus/>
                     </div>
-                    <div class="form-group" ng-show="userID==null">
+                    <div class="form-group" ng-show="user==null">
                         <input type="password" ng-model="newUser.password" placeholder="Password" class="form-control"/>
                     </div>
-                    <button type="submit" class="btn btn-danger" ng-click="login()" ng-show="userID==null">Log in</button>
-                    <button type="submit" class="btn btn-danger" ng-click="signup(lg)" ng-show="userID==null">Sign Up</button>                   
-                    <p  ng-show="userID!==null" > Logged in as: {{' {{userID}} '}}</p>
-                    <button type="submit" ng-show="userID!==null"  class="btn btn-danger" ng-click="logout()"> Log out</button>
+                    <button type="submit" class="btn btn-danger" ng-click="login()" ng-show="user==null">Log in</button>
+                    <button type="submit" class="btn btn-danger" ng-click="signup(lg)" ng-show="user==null">Sign Up</button>                   
+                    <p  ng-show="user!=null" > Logged in as: {{' {{user.name}} '}}</p>
+                    <button type="submit" ng-show="user!=null"  class="btn btn-danger" ng-click="logout()"> Log out</button>
                 </form>             
             </div>
     </nav>

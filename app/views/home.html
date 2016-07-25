@@ -1,9 +1,7 @@
 {% extends "base.html" %}{% block content %}  
 
-<button  class="btn btn-danger" type="submit" ng-click="openMessage(4)">message</button>
-
-"user: " = {{ '{{userID}}' }}
-<!--     "tutos: " {{ '{{tutos}}' }}-->       
+<!--user:  {{ '{{user}}' }}-->
+<!--"tutos: " {{ '{{tutos}}' }}-->       
 
 <div class ="h3 text-muted">Sign up and you'll be able to add and rate tutorials!</div>
 <div class="table-responsive">
@@ -27,7 +25,7 @@
     </table>
 </div>
 <div>
-    <form class="col-xs-6" ng-show="user != null" name="tutoForm" ng-submit="addTuto()">
+    <form class="col-xs-6" ng-show="user != null" name="tutoForm" ng-submit="addTuto()" novalidate>
         <h4 class="form-heading text-muted">Add a new  tutorial</h4>
         <div class="form-group ">
             <input type="text" name="name" class="form-control" ng-model="newTuto.name" placeholder="Tutorial name" required autofocus>
