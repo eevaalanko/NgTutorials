@@ -6,8 +6,9 @@ angular.module("myApp").controller(
         function ($scope, $http, $log, $uibModal) {
             $scope.current = null;
             $scope.newTuto = null;
-            $scope.newUser = null;
             $scope.user = null;
+            $scope.newUser = null;
+            $scope.newTuto = null;
             $scope.alert = null;
 
             $scope.getUser = function () {
@@ -15,6 +16,7 @@ angular.module("myApp").controller(
                     console.log(result);
                     if (result.data !== "") {
                         $scope.user = result.data;
+                        $scope.newTuto = {publisher: $scope.user.id};
                     }
                     ;
                 });
@@ -42,7 +44,6 @@ angular.module("myApp").controller(
                         console.log(result);
                         init();
                     });
-                    $scope.newTuto = {'publisher': $scope.user.id};
                     $scope.openMessage(6);
                 } else {
                     $scope.openMessage(3);
@@ -57,7 +58,6 @@ angular.module("myApp").controller(
                 }).then(function (result) {
                     console.log(result);
                     $scope.newUser = null;
-                    $scope.newTuto = {'publisher': $scope.user.id};
                     $scope.getUser();
                 });
             };
@@ -66,17 +66,13 @@ angular.module("myApp").controller(
                     console.log(result);
                 });
                 $scope.user = null;
+                $scope.newTuto = null;
                 init();
             };
             var init = function () {
                 $scope.getAllTutos();
                 $scope.getUser();
                 console.log("test");
-                if ($scope.user !== null) {
-                    $scope.newTuto = {'publisher': $scope.user.id};
-                }
-                ;
-
             };
             $scope.open = function (size) {
                 var modalInstance = $uibModal.open({
