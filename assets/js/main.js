@@ -7,13 +7,13 @@ angular.module("myApp").controller(
             $scope.current = null;
             $scope.newTuto = null;
             $scope.newUser = null;
-            $scope.user = {name: null};
+            $scope.userID =  null;
             $scope.alert = null;
-            $scope.getUser = function () {
+            var getUser = function () {
                 $http.get('getUser').then(function (result) {
                     console.log(result);
-                    if (!result.data == "") {
-                        $scope.user = result.data;
+                    if (result.data !== "") {
+                        $scope.userID = result.data[0];                       
                     }
                 });
             };
@@ -30,15 +30,21 @@ angular.module("myApp").controller(
                 console.log($scope.current);
             };
             $scope.addTuto = function () {
-                $http({
-                    url: "addTutorial",
-                    method: "POST",
-                    data: $scope.newTuto
-                }).then(function (result) {
-                    console.log(result);
-                    init();
-                });
-                $scope.newTuto = null;
+                if ($scope.tutoForm.$valid) {
+                    $http({
+                        url: "addTutorial",
+                        method: "POST",
+                        data: $scope.newTuto
+                    }).then(function (result) {
+                        console.log(result);
+                        init();
+                    });
+                    $scope.newTuto = null;
+                    $scope.openMessage[6];
+                } else {
+                    $scope.openMessage[3];
+                }
+                ;
             };
             $scope.login = function () {
                 $http({
@@ -47,23 +53,21 @@ angular.module("myApp").controller(
                     data: $scope.newUser
                 }).then(function (result) {
                     console.log(result);
-                    $scope.user = result.data;
                 });
                 $scope.newUser = null;
-                init();
+                getUser();
             };
             $scope.logout = function () {
                 $http.post('logout').then(function (result) {
                     console.log(result);
                 });
-                $scope.user = {name: null};
-                init();
+                $scope.userID =  null;
             }
 
             var init = function () {
                 $scope.getAllTutos();
                 console.log("test");
-                $scope.getUser();
+                getUser();
             };
             $scope.open = function (size) {
                 var modalInstance = $uibModal.open({
@@ -107,10 +111,11 @@ angular.module("myApp").controller(
             };
 
             $scope.messages = {1: "Wrong username or password",
-                2: "You have successfully signed up to ngTutorials",
+                2: "You have successfully signed up to ngTutorials!",
                 3: "Invalid fields",
                 4: "User name or email is already in use.",
-                5: "Bye for now"
+                5: "Bye for now",
+                6: "Tutorial added to database"
             };
 
             $scope.openMessage = function (msg) {
@@ -118,7 +123,6 @@ angular.module("myApp").controller(
                 $uibModal.open({
                     templateUrl: 'message',
                     controller: 'MessageCtrl',
-                    size: 'sm',
                     resolve: {
                         currentMsg: function () {
                             return $scope.currentMsg;

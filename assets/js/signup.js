@@ -7,16 +7,20 @@ angular.module('myApp').controller('SignupCtrl', function ($scope, $http, $uibMo
     };
 
     $scope.signup = function () {
-        $http({
-            url: "addUser",
-            method: "POST",
-            data: $scope.newUser
-        }).then(function (result) {
-            console.log(result);
-        });
-        $scope.newUser = null;
-        $scope.signedUp = true;
-        $uibModalInstance.close($scope.signedUp);
+        if ($scope.userForm.$valid) {
+            $http({
+                url: "addUser",
+                method: "POST",
+                data: $scope.newUser
+            }).then(function (result) {
+                console.log(result);
+            });
+            $scope.newUser = null;
+            $scope.signedUp = true;
+            $uibModalInstance.close($scope.signedUp);
+        } else {
+            alert('Invalid fields');
+        }
     };
 });
 

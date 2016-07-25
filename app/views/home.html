@@ -1,8 +1,8 @@
 {% extends "base.html" %}{% block content %}  
 
-<button  class="btn btn-danger" type="submit" ng-click="openMessage(1)">message</button>
+<button  class="btn btn-danger" type="submit" ng-click="openMessage(4)">message</button>
 
-"user: " = {{ '{{user}}' }}
+"user: " = {{ '{{userID}}' }}
 <!--     "tutos: " {{ '{{tutos}}' }}-->       
 
 <div class ="h3 text-muted">Sign up and you'll be able to add and rate tutorials!</div>
@@ -20,24 +20,24 @@
             <tr ng-repeat="tuto in tutos">                   
                 <td><button type="button" class="btn btn-link" ng-click="openTutoPage(tuto)">
                         {{' {{tuto.name}} '}}</button></td>            
-                <td uib-rating  ng-model="tuto.stars" read-only="isReadonly" aria-labelledby="default-rating" ></td> 
+                <td uib-rating  ng-model="tuto.stars" read-only="true" aria-labelledby="default-rating" ></td> 
                 <td>{{' {{tuto.added}} '}}</td>
             </tr>                  
         </tbody>
     </table>
 </div>
 <div>
-    <form class="col-xs-6" ng-show="user != null">
+    <form class="col-xs-6" ng-show="user != null" name="tutoForm" ng-submit="addTuto()">
         <h4 class="form-heading text-muted">Add a new  tutorial</h4>
         <div class="form-group ">
-            <label for="inputName" class="sr-only">Name</label>
-            <input type="text" id="inputTutoName" class="form-control" ng-model="newTuto.name" placeholder="Tutorial name" required autofocus>
-            <label for="inputLink" class="sr-only">Link</label>
-            <input type="text" id="inputLink" class="form-control" ng-model="newTuto.link" placeholder="Link to tutorial" required>
-            <label for="inputDescription" class="sr-only">Description</label>
-            <input type="text" id="inputDescription" class="form-control" ng-model="newTuto.description" placeholder="Write a short description" required>
+            <input type="text" name="name" class="form-control" ng-model="newTuto.name" placeholder="Tutorial name" required autofocus>
+            <p ng-show="tutoForm.name.$invalid && !tutoForm.name.$pristine" class="help-block">Tutorial name is required.</p>
+            <input type="text" name="link" class="form-control" ng-model="newTuto.link" placeholder="Link to tutorial" required>
+            <p ng-show="tutoForm.link.$invalid && !tutoForm.link.$pristine" class="help-block">Tutorial link is required.</p>
+            <input type="text" name="description" class="form-control" ng-model="newTuto.description" placeholder="Write a short description" required>
+            <p ng-show="tutoForm.description.$invalid && !tutoForm.description.$pristine" class="help-block">Tutorial description is required.</p>
         </div>
-        <button class="btn btn-danger" type="submit" ng-click="addTuto()">Submit</button>
+        <button class="btn btn-danger" type="submit">Submit</button>
     </form>
 </div>
 {% endblock %}

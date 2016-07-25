@@ -12,16 +12,11 @@ class User extends BaseModel {
     public static function authenticate($params) {
         $name = $params['name'];
         $password = $params['password'];
-        $query = DB::connection()->prepare('SELECT * FROM Usr WHERE name = :name and password = :password LIMIT 1');
+        $query = DB::connection()->prepare('SELECT id FROM Usr WHERE name = :name and password = :password LIMIT 1');
         $query->execute(array('name' => $name, 'password' => $password));
-        $row = $query->fetch();
-        if ($row) {
-            $user = new User(array(
-                'id' => $row['id'],
-                'email' => $row['email'],
-                'name' => $row['name']
-            ));
-            return $user;
+        $id = $query->fetch();
+        if ($id) {
+            return $id;
         }
         return null;
     }
@@ -30,9 +25,9 @@ class User extends BaseModel {
         // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
         // Alustetaan uusi Game-luokan olion käyttäjän syöttämillä arvoilla
         $user = new User(array(
-                'email' => $params['email'],
-                'name' => $params['name'],
-                'password' => $params['password']
+            'email' => $params['email'],
+            'name' => $params['name'],
+            'password' => $params['password']
         ));
         $user->save();
     }
