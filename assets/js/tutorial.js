@@ -2,7 +2,6 @@ angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $http,
     $scope.current = current;
     $scope.user = user;
     $scope.reviews = null;
-    $scope.newReview = {tutorial_id: current.id, usr_id: null};
     $scope.getAllReviews = function () {
         $http({
             url: "allReviews",
@@ -19,7 +18,8 @@ angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $http,
     };
     initReviews();
     $scope.addReview = function () {
-        $scope.newReview.usr_id = user.id ;
+        $scope.newReview.tutorial_id =current.id; 
+        $scope.newReview.usr_id =user.id;        
         $http({
             url: "addReview",
             method: "POST",
@@ -27,8 +27,8 @@ angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $http,
         }).then(function (result) {
             console.log(result);
             initReviews();
+            $scope.newReview = null;
         });
-        $scope.newReview = {tutorial_id: current.id, usr_id: null};
     };
     $scope.rate = 3;
     $scope.max = 5;

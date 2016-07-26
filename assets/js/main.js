@@ -5,10 +5,8 @@ angular.module("myApp").controller(
         "myCtrl",
         function ($scope, $http, $log, $uibModal) {
             $scope.current = null;
-            $scope.newTuto = null;
             $scope.user = null;
             $scope.newUser = null;
-            $scope.newTuto = null;
             $scope.alert = null;
 
             $scope.getUser = function () {
@@ -16,7 +14,6 @@ angular.module("myApp").controller(
                     console.log(result);
                     if (result.data !== "") {
                         $scope.user = result.data;
-                        $scope.newTuto = {publisher: $scope.user.id};
                     }
                     ;
                 });
@@ -29,12 +26,35 @@ angular.module("myApp").controller(
                     console.log("Tutoriaalin nimi on: " + $scope.tutos[2]);
                 });
             };
+
+            var init = function () {
+                $scope.getAllTutos();
+                $scope.getUser();
+                console.log("test");
+            };
+
             $scope.openTutoPage = function (tuto) {
                 $scope.current = tuto;
                 $scope.open('lg');
                 console.log($scope.current);
             };
+
+            $scope.addToMemo = function (tuto) {
+                $scope.params = {'usr_id': $scope.user.id, 'tutorial_id': tuto.id
+                };
+                $http({
+                    url: "addToMemo",
+                    method: "POST",
+                    data: $scope.params
+                }).then(function (result) {
+                    console.log(result);
+
+                });
+
+            }
+
             $scope.addTuto = function () {
+                $scope.newTuto.publisher = $scope.user.id;
                 if ($scope.tutoForm.$valid) {
                     $http({
                         url: "addTutorial",
@@ -45,6 +65,7 @@ angular.module("myApp").controller(
                         init();
                     });
                     $scope.openMessage(6);
+                    $scope.newTuto = null;
                 } else {
                     $scope.openMessage(3);
                 }
@@ -66,13 +87,7 @@ angular.module("myApp").controller(
                     console.log(result);
                 });
                 $scope.user = null;
-                $scope.newTuto = null;
                 init();
-            };
-            var init = function () {
-                $scope.getAllTutos();
-                $scope.getUser();
-                console.log("test");
             };
             $scope.open = function (size) {
                 var modalInstance = $uibModal.open({
@@ -86,8 +101,21 @@ angular.module("myApp").controller(
                         user: function () {
                             return $scope.user;
                         }
-
                     }
+                });
+                modalInstance.result.then(function () {
+                    init();
+                }, function () {
+                    $log.info('Modal dismissed at: ' + new Date());
+                    init();
+                });
+            };
+
+            $scope.openMemo = function () {
+                var modalInstance = $uibModal.open({
+                    templateUrl: 'memo',
+                    controller: 'MemoCtrl',
+                    size: 'lg'
                 });
                 modalInstance.result.then(function () {
                     init();

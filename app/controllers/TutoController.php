@@ -2,7 +2,6 @@
 
 // Muista sisällyttää malliluokka require-komennolla!
 require 'app/models/tuto.php';
-require 'app/models/user.php';
 
 class TutoController extends BaseController {
 

@@ -1,7 +1,7 @@
 {% extends "base.html" %}{% block content %}  
 
 <!--user:  {{ '{{user}}' }}-->
- {{ '{{newTuto}}' }}
+<!--{{ '{{newTuto}}' }}-->
 
 <div class ="h3 text-muted">Sign up and you'll be able to add and rate tutorials!</div>
 <div class="table-responsive">
@@ -12,8 +12,8 @@
                 <th>Name</th>
                 <th>Stars</th>
                 <th>Added</th>
-                <th>Added by<th>
-         <!--       <th>Add to memo>>th>    -->
+                <th>Added by</th> 
+                <th ng-show="user != null">#</th> 
             </tr>
         </thead>
         <tbody>
@@ -22,11 +22,14 @@
                         {{' {{tuto.name}} '}}</button></td>            
                 <td uib-rating  ng-model="tuto.stars" read-only="true" aria-labelledby="default-rating" ></td> 
                 <td>{{' {{tuto.added}} '}}</td>
-                <td>{{' {{tuto.publisher}} '}}</td>
+                <td>{{' {{tuto.publishername}} '}}</td>  
+                <td  ng-show="user != null"><button type="button" class="btn btn-link" ng-click="addToMemo(tuto)">
+                        Add to memo</button></td> 
             </tr>                  
         </tbody>
     </table>
 </div>
+<div><button class="btn btn-lg btn-danger" ng-click="openMemo()">Memo</button></div>
 <div>
     <form class="col-xs-6" ng-show="user != null" name="tutoForm" ng-submit="addTuto()" novalidate>
         <h4 class="form-heading text-muted">Add a new  tutorial</h4>

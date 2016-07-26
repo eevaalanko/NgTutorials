@@ -2,7 +2,7 @@
 
 class Tuto extends BaseModel {
 
-    public $id, $name, $description, $link, $added, $publisher, $stars;
+    public $id, $name, $description, $link, $added, $publisher, $publishername, $stars;
 
 // Konstruktori
     public function __construct($attributes) {
@@ -10,7 +10,7 @@ class Tuto extends BaseModel {
     }
 
     public static function all() {
-        $query = DB::connection()->prepare('select tutorial.id, name, link, description, tutorial.added, tutorial.publisher, CAST(AVG(review.stars)AS integer) as stars from tutorial  left join review on tutorial.id = review.tutorial_id group by tutorial.id, tutorial.name, link, description, tutorial.publisher, tutorial.added order by stars DESC;');
+        $query = DB::connection()->prepare('select tutorial.id, tutorial.name, link, description, tutorial.added, tutorial.publisher, usr.name as publishername, CAST(AVG(review.stars)AS integer) as stars from tutorial  left join review on tutorial.id = review.tutorial_id left join usr on usr.id = tutorial.publisher group by tutorial.id, tutorial.name, link, description, tutorial.added, publisher, usr.name order by stars DESC;');
         $query->execute();
         $rows = $query->fetchAll();
         $tutos = array();
@@ -23,6 +23,7 @@ class Tuto extends BaseModel {
                 'link' => $row['link'],
                 'added' => $row['added'],
                 'publisher' => $row['publisher'],
+                'publishername' => $row['publishername'],
                 'stars' => $row['stars']
             ));
         }
@@ -52,10 +53,10 @@ class Tuto extends BaseModel {
         // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
         // Alustetaan uusi Game-luokan olion käyttäjän syöttämillä arvoilla
         $tuto = new Tuto(array(
-        'name' => $params['name'],
-        'description' => $params['description'],
-        'link' => $params['link'],
-        'publisher' => $params['publisher']
+            'name' => $params['name'],
+            'description' => $params['description'],
+            'link' => $params['link'],
+            'publisher' => $params['publisher']
         ));
         // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
         $tuto->save();
@@ -75,8 +76,8 @@ class Tuto extends BaseModel {
             'id' => $params['id'],
             'name' => $params['name'],
             'description' => $params['description'],
-            'link' => $params['link']
-                // 'publisher' => $params['publisher']
+            'link' => $params['link'],
+            'publisher' => $params['publisher']
         ));
         // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
         $tuto->update();

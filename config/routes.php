@@ -16,6 +16,14 @@ $routes->get('/signup', function() {
     UserController::signup();
 });
 
+$routes->get('/memo', function() {
+    MemoController::memo();
+});
+
+$routes->post('/addToMemo', function() {
+    MemoController::addToMemo();
+});
+
 $routes->post('/login', function() {
     UserController::login();
 });
