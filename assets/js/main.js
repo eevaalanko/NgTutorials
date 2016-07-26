@@ -115,7 +115,12 @@ angular.module("myApp").controller(
                 var modalInstance = $uibModal.open({
                     templateUrl: 'memo',
                     controller: 'MemoCtrl',
-                    size: 'lg'
+                    size: 'lg',
+                    resolve: {
+                        user: function () {
+                            return $scope.user;
+                        }
+                    }
                 });
                 modalInstance.result.then(function () {
                     init();

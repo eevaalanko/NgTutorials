@@ -29,7 +29,9 @@
         </tbody>
     </table>
 </div>
-<div><button class="btn btn-lg btn-danger" ng-click="openMemo()">Memo</button></div>
+<div class="col-xs-6">
+    <h4 class="text-muted">Here is your own list of tutorials</h4>
+    <button class="btn  btn-danger" ng-click="openMemo()">Memo</button></div>
 <div>
     <form class="col-xs-6" ng-show="user != null" name="tutoForm" ng-submit="addTuto()" novalidate>
         <h4 class="form-heading text-muted">Add a new  tutorial</h4>

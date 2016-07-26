@@ -52,6 +52,7 @@ angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $http,
             data: current.id
         }).then(function (result) {
             console.log(result);
+              alert('You deleted tutorial ' + current.name);
         });
         $uibModalInstance.close();
     };

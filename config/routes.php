@@ -16,6 +16,14 @@ $routes->get('/signup', function() {
     UserController::signup();
 });
 
+$routes->post('/allFavorites', function() {
+    MemoController::allFavorites();
+});
+
+$routes->post('/deleteFavorite', function() {
+    MemoController::deleteFavorite();
+});
+
 $routes->get('/memo', function() {
     MemoController::memo();
 });

@@ -1,8 +1,9 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
     <h3 class="modal-title">Memo</h3>
+   <!-- {{' {{favorites}} '}}-->
 </div>
-<div class="modal-dialog">
+<div class="modal-body">
     <div class="table-responsive">
         <h4 class="text-muted">Tutorials</h4>
         <table class="table table-bordered table-striped">
@@ -15,9 +16,9 @@
             </thead>
             <tbody>
                 <tr ng-repeat="favorite in favorites">
-                    <td>{{' {{favorite.name}} '}}</td> 
-                    <td>{{' {{favorite.link}} '}}</td> 
-                    <td><button type="button" class="btn btn-link" ng-click="deleteFavorite()">
+                    <td>{{' {{favorite.tutorial_name}} '}}</td> 
+                    <td><a href="{{' {{favorite.tutorial_link}} '}}">{{' {{favorite.tutorial_link}} '}}</a></td>
+                    <td><button type="button" class="btn btn-link" ng-click="deleteFavorite(favorite)">
                             Remove from memo</button></td>
                 </tr>                  
             </tbody>

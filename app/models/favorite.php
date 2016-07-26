@@ -2,7 +2,7 @@
 
 class Favorite extends BaseModel {
 
-    public $id, $usr_id, $tutorial_id, $name, $link;
+    public $id, $usr_id, $tutorial_id, $tutorial_name, $tutorial_link;
 
 // Konstruktori
     public function __construct($attributes) {
@@ -21,6 +21,7 @@ class Favorite extends BaseModel {
                 'usr_id' => $row['usr_id'],
                 'tutorial_id' => $row['tutorial_id'],
                 'tutorial_name' => $row['tutorial_name'],
+                'tutorial_link' => $row['tutorial_link']
             ));
         }
         return $favorites;
@@ -39,5 +40,9 @@ class Favorite extends BaseModel {
         $query->execute(array('usr_id' => $this->usr_id, 'tutorial_id' => $this->tutorial_id));
     }
 
-}
+    public function delete($id) {
+        $query = DB::connection()->prepare('DELETE from Favorites  where id = :id ');
+        $query->execute(array('id' => $id));
+    }
 
+}
