@@ -4,6 +4,12 @@ Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](http://ealanko.users.cs.helsinki.fi/ngtuto)
 * [Linkki dokumentaatiooni](doc/dokumentaatio.pdf)
+* 
+
+Tunnukset
+
+* käyttäjä: Sarcasmus Maximus
+* salasana: secret
 
 ## Työn aihe
 ### ngTutorials
